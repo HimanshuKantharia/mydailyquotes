@@ -28,10 +28,8 @@ if($messageText == "hi") {
  		if(!empty($result)) {
  			$answer = $result;
  		} else {
- 			$answer = "I Didn't Get Time...";
+ 			$answer = "Time is Not Available...";
  		}
-
-
 }
 
 
