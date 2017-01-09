@@ -19,7 +19,9 @@ $answer = "I don't understand.Please Ask me 'hi'.";
 
 if($messageText == "hi") {
 
-    $answer = "Hello Unknown";
+
+     $answer = "Hello Himanshu";
+
 } else if ($messageText == "time") {
 	$result = file_get_contents(“http://www.timeapi.org/utc/now?format=%25a%20%25b%20%25d%20%25I:%25M:%25S%20%25Y");
 
@@ -29,7 +31,6 @@ if($messageText == "hi") {
  			$answer = "I Didn't Get Time...";
  		}
 
-    $answer = "Hello Himanshu";
 
 }
 
