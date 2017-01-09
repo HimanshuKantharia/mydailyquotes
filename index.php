@@ -20,7 +20,7 @@ $answer = "I don't understand.Please Ask me 'hi'.";
 if($messageText == "hi") {
 
 
-     $answer = "Hello Himanshu";
+     $answer = "Hello Himanshu, WELCOME!";
 
 } 
 // else if ($messageText == "time") {
