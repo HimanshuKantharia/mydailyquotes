@@ -1,5 +1,5 @@
 <?php
-// parameters
+
 $hubVerifyToken = 'TOKEN123456abcd';
 $accessToken = "EAAYGq9HiIM0BAFyPFce270Lnq8xfT5l1Hzm8wGBOxtpAhVTOkxmfRfp3JwVeUE6D6045lg8wYlFSxrw0VaxGnoXB1o8w344LkxJ7vkgMN7XcVhQ6zL6mkN6IysrnKmwauUzRbjkEVUqWzWVV8CZBfA2SVOrwO6kJlDkrSDgZDZD";
 
@@ -18,6 +18,7 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 $answer = "I don't understand.Please Ask me 'hi'.";
 
 if($messageText == "hi") {
+
     $answer = "Hello Unknown";
 } else if ($messageText == "time") {
 	$result = file_get_contents(“http://www.timeapi.org/utc/now?format=%25a%20%25b%20%25d%20%25I:%25M:%25S%20%25Y");
@@ -27,6 +28,9 @@ if($messageText == "hi") {
  		} else {
  			$answer = "I Didn't Get Time...";
  		}
+
+    $answer = "Hello Himanshu";
+
 }
 
 
