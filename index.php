@@ -34,11 +34,6 @@ else if ($messageText == "time") {
  		}
 }
 
-if(!empty($messageText)){
-	response($senderId,$answer);
-}
-
-
 public function response($senderId,$answer){
 	$response = [
     	'recipient' => [ 'id' => $senderId ],
@@ -53,6 +48,12 @@ public function response($senderId,$answer){
 	curl_close($ch);
 
 }
+
+//if(!empty($messageText)){
+	$res = response($senderId,$answer);
+//}
+
+
 
 
 
