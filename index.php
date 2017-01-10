@@ -25,7 +25,7 @@ if($messageText == "hi") {
 
 } 
 else if ($messageText == "time") {
-	$result = file_get_contents("http://www.timeapi.org/utc/now?format=%25a%20%25b%20%25d%20%25I:%25M:%25S%20%25Y");
+	$result = file_get_contents("http://www.timeapi.org/utc/now?format=%25a%20%25b%20%25d%20%25I:%25M:%25S%20%25Z%20%25Y");
 
  		if(!empty($result)) {
  			$answer = "Time : " .$result;
@@ -39,6 +39,7 @@ $response = [
     'recipient' => [ 'id' => $senderId ],
     'message' => [ 'text' => $answer ]
 ];
+
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
