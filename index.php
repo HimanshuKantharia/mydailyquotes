@@ -1,5 +1,5 @@
 <?php
-
+require('vendor/autoload.php');
 $hubVerifyToken = 'TOKEN123456abcd';
 $accessToken = "EAAYGq9HiIM0BADuJXMOQrmcJT8Uj1ZAFIcGfoMdSituMKcIZAJUd7STkFZAa3VTR2p3WPdDP276hnxOJ3xHmP63s7rVDbYrZA1HHOuw1MqCRZC18SR8xxhckblt6iwQLdlixvM08cQYCxKgo621xj70Y8SGr5qmdGUmvYpso1SAZDZD";
 
