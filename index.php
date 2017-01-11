@@ -25,10 +25,12 @@ if($messageText == "hi" || $messageText == 'Hi') {
 
 } 
 else if ($messageText == "time") {
-	$chr = curl_init("http://www.timeapi.org/utc/now?format=%25a%20%25b%20%25d%20%25I:%25M:%25S%20%25Z%20%25Y");
-	$result = curl_exec($chr);
- 		if(!empty($result)) {
- 			$answer = "Time : " .$result;
+	$jsondate = file_get_contents("https://script.googleusercontent.com/macros/echo?user_content_key=MwFNcl0KVozlITfkYtONGeBbBrGl1rnO8t0EIrYYKlsSiwzC-Kh2ogcpvBZxRZUJLgumLvhll4Sl-70MQrllKOt4k-Rnhq50m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJ9GRkcRevgjTvo8Dc32iw_BLJPcPfRdVKhJT5HNzQuXEeN3QFwl2n0M6ZmO-h7C6bwVq0tbM60-xcVIW3tKXBXruTRuukcZWQ&lib=MwxUjRcLr2qLlnVOLh12wSNkqcO1Ikdrk");
+	
+	$res = json_decode($jsondate);
+
+ 		if(!empty($res)) {
+ 			$answer = "Time : " .$res->hours." - ".$res->minutes." = ".$res->seconds."<br> Date : ".$res->day." / ".$res->month." / "/$res->year;
  		} else {
  			$answer = "Time is Not Available...";
  		}
