@@ -18,15 +18,15 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
 $answer = "I don't understand.Please Ask me 'hi'.";
 
-if($messageText == "hi") {
+if($messageText == "hi" || $messageText == 'Hi') {
 
 
      $answer = "Hello Himanshu, WELCOME!";
 
 } 
 else if ($messageText == "time") {
-	$result = file_get_contents("http://www.timeapi.org/utc/now?format=%25a%20%25b%20%25d%20%25I:%25M:%25S%20%25Z%20%25Y");
-
+	$chr = curl_init("http://www.timeapi.org/utc/now?format=%25a%20%25b%20%25d%20%25I:%25M:%25S%20%25Z%20%25Y");
+	$result = curl_exec($chr);
  		if(!empty($result)) {
  			$answer = "Time : " .$result;
  		} else {
