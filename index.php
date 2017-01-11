@@ -30,7 +30,7 @@ else if ($messageText == "time") {
 	$res = json_decode($jsondate);
 
  		if(!empty($res)) {
- 			$answer = "Time : " .$res->hours." - ".$res->minutes." = ".$res->seconds."<br> Date : ".$res->day." / ".$res->month." / "/$res->year;
+ 			$answer = "Time : " .$res->hours.":".$res->minutes.":".$res->seconds."<br> Date : ".$res->day." / ".$res->month." / ".$res->year;
  		} else {
  			$answer = "Time is Not Available...";
  		}
