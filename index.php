@@ -52,5 +52,7 @@ $response = [
 			curl_exec($ch);
 		//}
 		curl_close($ch);
+		return 0;
 	}
-respond($response);
+
+$re = respond($response);
