@@ -42,7 +42,7 @@ $response = [
     'message' => [ 'text' => $answer ]
 ];
 
-respond($response);
+
 	public function respond($response){
 		$ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 		curl_setopt($ch, CURLOPT_POST, 1);
@@ -53,4 +53,4 @@ respond($response);
 		//}
 		curl_close($ch);
 	}
-
+respond($response);
