@@ -124,6 +124,14 @@ class ComposerStaticInitb847f0f542b59a997b5fb6f436d7d4f8
                 0 => __DIR__ . '/..' . '/pimple/pimple/lib',
             ),
         ),
+        'H' => 
+        array (
+            'Herrera\\Pdo' => 
+            array (
+                0 => __DIR__ . '/..' . '/herrera-io/pdo-log/src/lib',
+                1 => __DIR__ . '/..' . '/herrera-io/silex-pdo/src/lib',
+            ),
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)

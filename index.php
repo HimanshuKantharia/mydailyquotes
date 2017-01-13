@@ -4,7 +4,17 @@ require('vendor/autoload.php');
 $hubVerifyToken = 'TOKEN123456abcd';
 $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJIewMxpd5O4E5pTIPhWiYQVMEF3qOZA41Ru7BtRZCdnkMtnUiSViJZAJ1wIXF30EOLFCmwyewLiP9iGTZCMBrl4MZBZAToGMk7cvlQQ4IkqvVWVwZDZD";
 
-// $accessToken = 'ENV["ACCESS_TOKEN"]';
+// $teleToken = "311805084:AAGSOoUfWn_hZm1yJHNKQLnqe0s2JTNv9aw";
+// $teleURL = "https://api.telegram.org/bot311805084:AAGSOoUfWn_hZm1yJHNKQLnqe0s2JTNv9aw/getMe";
+
+$dbopts = parse_url("localhost/phpmyadmin");
+$app->register(new Herrera\Pdo\PdoServiceProvider(),
+               array(
+                   'pdo.dsn' => 'pgsql:dbname=svnit;host=localhost;port=5432,'.
+                   'pdo.username' => "root",
+                   'pdo.password' => ""
+               )
+);
 
 // check token at setup
 if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
