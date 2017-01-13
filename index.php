@@ -7,7 +7,7 @@ $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJI
 // $teleToken = "311805084:AAGSOoUfWn_hZm1yJHNKQLnqe0s2JTNv9aw";
 // $teleURL = "https://api.telegram.org/bot311805084:AAGSOoUfWn_hZm1yJHNKQLnqe0s2JTNv9aw/getMe";
 
-$dbopts = parse_url("localhost/phpmyadmin");
+//$dbopts = parse_url("localhost/phpmyadmin");
 $app->register(new Herrera\Pdo\PdoServiceProvider(),
                array(
                    'pdo.dsn' => 'pgsql:dbname=svnit;host=localhost;port=5432,'.
