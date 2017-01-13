@@ -21,7 +21,7 @@ $answer = "I don't understand.Please Ask me 'hi'.";
 if($messageText == "hi" || $messageText == 'Hi') {
 
 
-     $answer = "Hello Himanshu, WELCOME!";
+     $answer = "Hey Himanshu!";
 
 } 
 else if ($messageText == "time") {
@@ -30,7 +30,7 @@ else if ($messageText == "time") {
 	$res = json_decode($jsondate);
 
  		if(!empty($res)) {
- 			$answer = "Time : " .$res->hours.":".$res->minutes.":".$res->seconds."<br> Date : ".$res->day." / ".$res->month." / ".$res->year;
+ 			$answer = "Time : " .$res->hours.":".$res->minutes.":".$res->seconds." Date : ".$res->day." / ".$res->month." / ".$res->year;
  		} else {
  			$answer = "Time is Not Available...";
  		}
