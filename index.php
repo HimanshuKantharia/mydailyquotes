@@ -8,13 +8,13 @@ $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJI
 // $teleURL = "https://api.telegram.org/bot311805084:AAGSOoUfWn_hZm1yJHNKQLnqe0s2JTNv9aw/getMe";
 
 //$dbopts = parse_url("localhost/phpmyadmin");
-$app->register(new Herrera\Pdo\PdoServiceProvider(),
-               array(
-                   'pdo.dsn' => 'pgsql:dbname=svnit;host=localhost;port=5432,'.
-                   'pdo.username' => "root",
-                   'pdo.password' => ""
-               )
-);
+// $app->register(new Herrera\Pdo\PdoServiceProvider(),
+//                array(
+//                    'pdo.dsn' => 'pgsql:dbname=svnit;host=localhost;port=5432,'.
+//                    'pdo.username' => "root",
+//                    'pdo.password' => ""
+//                )
+// );
 
 // check token at setup
 if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
@@ -34,7 +34,7 @@ if($messageText == "hi" || $messageText == 'Hi') {
      $answer = "Hey Himanshu!";
 
 } 
-else if ($messageText == "time") {
+else if ($messageText == "Time") {
 	$jsondate = file_get_contents("https://script.googleusercontent.com/macros/echo?user_content_key=MwFNcl0KVozlITfkYtONGeBbBrGl1rnO8t0EIrYYKlsSiwzC-Kh2ogcpvBZxRZUJLgumLvhll4Sl-70MQrllKOt4k-Rnhq50m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJ9GRkcRevgjTvo8Dc32iw_BLJPcPfRdVKhJT5HNzQuXEeN3QFwl2n0M6ZmO-h7C6bwVq0tbM60-xcVIW3tKXBXruTRuukcZWQ&lib=MwxUjRcLr2qLlnVOLh12wSNkqcO1Ikdrk");
 	
 	$res = json_decode($jsondate);
