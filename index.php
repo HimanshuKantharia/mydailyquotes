@@ -34,13 +34,13 @@ if($messageText == "hi" || $messageText == 'Hi') {
      $answer = "Hey Himanshu!";
 
 } 
-else if ($messageText == "Time") {
+else if ($messageText == "Time" || $messageText == "Time") {
 	$jsondate = file_get_contents("https://script.googleusercontent.com/macros/echo?user_content_key=MwFNcl0KVozlITfkYtONGeBbBrGl1rnO8t0EIrYYKlsSiwzC-Kh2ogcpvBZxRZUJLgumLvhll4Sl-70MQrllKOt4k-Rnhq50m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJ9GRkcRevgjTvo8Dc32iw_BLJPcPfRdVKhJT5HNzQuXEeN3QFwl2n0M6ZmO-h7C6bwVq0tbM60-xcVIW3tKXBXruTRuukcZWQ&lib=MwxUjRcLr2qLlnVOLh12wSNkqcO1Ikdrk");
 	
 	$res = json_decode($jsondate);
 
  		if(!empty($res)) {
- 			$answer = "Time : " .$res->hours.":".$res->minutes.":".$res->seconds." Date : ".$res->day." / ".$res->month." / ".$res->year;
+ 			$answer = "Now - Time : " .$res->hours.":".$res->minutes.":".$res->seconds." Date : ".$res->day." / ".$res->month." / ".$res->year;
  		} else {
  			$answer = "Time is Not Available...";
  		}
