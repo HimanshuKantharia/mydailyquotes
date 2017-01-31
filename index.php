@@ -47,14 +47,14 @@ else if ($messageText == "Time" || $messageText == "time") {
 }
 
 
-// $response = [
-//     'recipient' => [ 'id' => $senderId ],
-//     'message' => [ 'text' => $answer ]
-// ];
+$response = [
+    'recipient' => [ 'id' => $senderId ],
+    'message' => [ 'text' => $answer ]
+];
 
 $response1 = [
   "recipient":{
-    "id":$senderId
+    "id"=> $senderId
   },
   "message":{
     "text":"Pick a color:",
