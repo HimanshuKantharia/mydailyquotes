@@ -49,7 +49,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 
 $response = [
     'recipient' => [ 'id' => $senderId ],
-    'message' => [ 'text' => $answer ]
+    'message' => [ 'text' => $answer.$senderId ]
 ];
 
 // $response1 = [
