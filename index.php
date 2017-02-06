@@ -30,7 +30,7 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 echo $senderId."<br>";
 
 $senderId = "1473360329360719";
-$query = "SELECT * FROM public.'user' WHERE id='1473360329360719';";
+$query = 'SELECT * FROM public."user" WHERE id="1473360329360719"';
 $result = pg_query($conn,$query);
 if (!$result) { 
     echo "Problem with query " . $query . "<br/>"; 
