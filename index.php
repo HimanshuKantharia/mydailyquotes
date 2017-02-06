@@ -5,14 +5,16 @@ $hubVerifyToken = 'TOKEN123456abcd';
 $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJIewMxpd5O4E5pTIPhWiYQVMEF3qOZA41Ru7BtRZCdnkMtnUiSViJZAJ1wIXF30EOLFCmwyewLiP9iGTZCMBrl4MZBZAToGMk7cvlQQ4IkqvVWVwZDZD";
 
 
-$dbopts = parse_url("postgres://cmtddoqynjiyoy:ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356@ec2-54-243-55-1.compute-1.amazonaws.com:5432/dfi5om1rl2d9ev");
-$app->register(new Herrera\Pdo\PdoServiceProvider(),
-               array(
-                   'pdo.dsn' => 'pgsql:dbname=dfi5om1rl2d9ev;host=ec2-54-243-55-1.compute-1.amazonaws.com;port=5432,'.
-                   'pdo.username' => "cmtddoqynjiyoy",
-                   'pdo.password' => "ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356"
-               )
-);
+// $dbopts = parse_url("postgres://cmtddoqynjiyoy:ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356@ec2-54-243-55-1.compute-1.amazonaws.com:5432/dfi5om1rl2d9ev");
+// $app->register(new Herrera\Pdo\PdoServiceProvider(),
+//                array(
+//                    'pdo.dsn' => 'pgsql:dbname=dfi5om1rl2d9ev;host=ec2-54-243-55-1.compute-1.amazonaws.com;port=5432,'.
+//                    'pdo.username' => "cmtddoqynjiyoy",
+//                    'pdo.password' => "ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356"
+//                )
+// );
+
+$conn = pg_connect("host=postgres://cmtddoqynjiyoy:ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356@ec2-54-243-55-1.compute-1.amazonaws.com:5432/dfi5om1rl2d9ev port=5432 dbname=dfi5om1rl2d9ev user=cmtddoqynjiyoy password=ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356 sslmode=require");
 
 // check token at setup
 if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
