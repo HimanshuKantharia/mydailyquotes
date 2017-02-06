@@ -228,6 +228,7 @@
                 "log",
                 "pdo"
             ],
+            "abandoned": true,
             "time": "2013-08-23T20:16:45+00:00"
         },
         {
@@ -284,6 +285,7 @@
                 "service",
                 "silex"
             ],
+            "abandoned": true,
             "time": "2013-11-26T17:05:52+00:00"
         },
         {
@@ -629,16 +631,16 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "810ba5c1c5352a4ddb15d4719e8936751dff0b05"
+                "reference": "b4d9818f127c60ce21ed62c395da7df868dc8477"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/810ba5c1c5352a4ddb15d4719e8936751dff0b05",
-                "reference": "810ba5c1c5352a4ddb15d4719e8936751dff0b05",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/b4d9818f127c60ce21ed62c395da7df868dc8477",
+                "reference": "b4d9818f127c60ce21ed62c395da7df868dc8477",
                 "shasum": ""
             },
             "require": {
@@ -682,7 +684,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02T20:32:22+00:00"
+            "time": "2017-01-28T02:37:08+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1015,16 +1017,16 @@
         },
         {
             "name": "symfony/twig-bridge",
-            "version": "v2.8.16",
+            "version": "v2.8.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bridge.git",
-                "reference": "fb43ce9f0dad4e816be4188b1eb310f0ae7d659b"
+                "reference": "9e5be68dfd7e0a8cb4d8e42dfcf539b1e0172637"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/fb43ce9f0dad4e816be4188b1eb310f0ae7d659b",
-                "reference": "fb43ce9f0dad4e816be4188b1eb310f0ae7d659b",
+                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/9e5be68dfd7e0a8cb4d8e42dfcf539b1e0172637",
+                "reference": "9e5be68dfd7e0a8cb4d8e42dfcf539b1e0172637",
                 "shasum": ""
             },
             "require": {
@@ -1092,7 +1094,7 @@
             ],
             "description": "Symfony Twig Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02T20:30:24+00:00"
+            "time": "2017-01-21T16:40:50+00:00"
         },
         {
             "name": "twig/twig",
@@ -1159,16 +1161,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v117",
+            "version": "v119",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "960199a978308c75926fd9bb4775f7113bf1d777"
+                "reference": "26ebb69005d467d45f75797c1594f60818ba3fce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/960199a978308c75926fd9bb4775f7113bf1d777",
-                "reference": "960199a978308c75926fd9bb4775f7113bf1d777",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/26ebb69005d467d45f75797c1594f60818ba3fce",
+                "reference": "26ebb69005d467d45f75797c1594f60818ba3fce",
                 "shasum": ""
             },
             "bin": [
@@ -1199,7 +1201,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2016-12-09T19:37:38+00:00"
+            "time": "2017-01-21T00:39:13+00:00"
         }
     ],
     "aliases": [],

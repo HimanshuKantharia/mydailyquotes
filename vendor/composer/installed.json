@@ -595,52 +595,6 @@
         ]
     },
     {
-        "name": "heroku/heroku-buildpack-php",
-        "version": "v117",
-        "version_normalized": "117.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/heroku/heroku-buildpack-php.git",
-            "reference": "960199a978308c75926fd9bb4775f7113bf1d777"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/960199a978308c75926fd9bb4775f7113bf1d777",
-            "reference": "960199a978308c75926fd9bb4775f7113bf1d777",
-            "shasum": ""
-        },
-        "time": "2016-12-09T19:37:38+00:00",
-        "bin": [
-            "bin/heroku-hhvm-apache2",
-            "bin/heroku-hhvm-nginx",
-            "bin/heroku-php-apache2",
-            "bin/heroku-php-nginx"
-        ],
-        "type": "library",
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "David Zuelke",
-                "email": "dz@heroku.com"
-            }
-        ],
-        "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP/HHVM and Apache2/Nginx as on Heroku",
-        "homepage": "https://github.com/heroku/heroku-buildpack-php",
-        "keywords": [
-            "apache",
-            "apache2",
-            "foreman",
-            "heroku",
-            "hhvm",
-            "nginx",
-            "php"
-        ]
-    },
-    {
         "name": "guzzlehttp/promises",
         "version": "v1.3.1",
         "version_normalized": "1.3.1.0",
@@ -978,148 +932,6 @@
         ]
     },
     {
-        "name": "symfony/twig-bridge",
-        "version": "v2.8.16",
-        "version_normalized": "2.8.16.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/twig-bridge.git",
-            "reference": "fb43ce9f0dad4e816be4188b1eb310f0ae7d659b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/fb43ce9f0dad4e816be4188b1eb310f0ae7d659b",
-            "reference": "fb43ce9f0dad4e816be4188b1eb310f0ae7d659b",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.9",
-            "twig/twig": "~1.28|~2.0"
-        },
-        "require-dev": {
-            "symfony/asset": "~2.7|~3.0.0",
-            "symfony/console": "~2.8|~3.0.0",
-            "symfony/expression-language": "~2.4|~3.0.0",
-            "symfony/finder": "~2.3|~3.0.0",
-            "symfony/form": "~2.8.16",
-            "symfony/http-kernel": "~2.8|~3.0.0",
-            "symfony/polyfill-intl-icu": "~1.0",
-            "symfony/routing": "~2.2|~3.0.0",
-            "symfony/security": "~2.6|~3.0.0",
-            "symfony/security-acl": "~2.6|~3.0.0",
-            "symfony/stopwatch": "~2.2|~3.0.0",
-            "symfony/templating": "~2.1|~3.0.0",
-            "symfony/translation": "~2.7|~3.0.0",
-            "symfony/var-dumper": "~2.7.16|~2.8.9|~3.0.9",
-            "symfony/yaml": "~2.0,>=2.0.5|~3.0.0"
-        },
-        "suggest": {
-            "symfony/asset": "For using the AssetExtension",
-            "symfony/expression-language": "For using the ExpressionExtension",
-            "symfony/finder": "",
-            "symfony/form": "For using the FormExtension",
-            "symfony/http-kernel": "For using the HttpKernelExtension",
-            "symfony/routing": "For using the RoutingExtension",
-            "symfony/security": "For using the SecurityExtension",
-            "symfony/stopwatch": "For using the StopwatchExtension",
-            "symfony/templating": "For using the TwigEngine",
-            "symfony/translation": "For using the TranslationExtension",
-            "symfony/var-dumper": "For using the DumpExtension",
-            "symfony/yaml": "For using the YamlExtension"
-        },
-        "time": "2017-01-02T20:30:24+00:00",
-        "type": "symfony-bridge",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.8-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Bridge\\Twig\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony Twig Bridge",
-        "homepage": "https://symfony.com"
-    },
-    {
-        "name": "symfony/debug",
-        "version": "v3.2.2",
-        "version_normalized": "3.2.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/debug.git",
-            "reference": "810ba5c1c5352a4ddb15d4719e8936751dff0b05"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/debug/zipball/810ba5c1c5352a4ddb15d4719e8936751dff0b05",
-            "reference": "810ba5c1c5352a4ddb15d4719e8936751dff0b05",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.9",
-            "psr/log": "~1.0"
-        },
-        "conflict": {
-            "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
-        },
-        "require-dev": {
-            "symfony/class-loader": "~2.8|~3.0",
-            "symfony/http-kernel": "~2.8|~3.0"
-        },
-        "time": "2017-01-02T20:32:22+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Component\\Debug\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony Debug Component",
-        "homepage": "https://symfony.com"
-    },
-    {
         "name": "herrera-io/pdo-log",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -1172,7 +984,8 @@
             "debug",
             "log",
             "pdo"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "herrera-io/silex-pdo",
@@ -1230,6 +1043,195 @@
             "provider",
             "service",
             "silex"
+        ],
+        "abandoned": true
+    },
+    {
+        "name": "symfony/twig-bridge",
+        "version": "v2.8.17",
+        "version_normalized": "2.8.17.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/twig-bridge.git",
+            "reference": "9e5be68dfd7e0a8cb4d8e42dfcf539b1e0172637"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/9e5be68dfd7e0a8cb4d8e42dfcf539b1e0172637",
+            "reference": "9e5be68dfd7e0a8cb4d8e42dfcf539b1e0172637",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9",
+            "twig/twig": "~1.28|~2.0"
+        },
+        "require-dev": {
+            "symfony/asset": "~2.7|~3.0.0",
+            "symfony/console": "~2.8|~3.0.0",
+            "symfony/expression-language": "~2.4|~3.0.0",
+            "symfony/finder": "~2.3|~3.0.0",
+            "symfony/form": "~2.8.16",
+            "symfony/http-kernel": "~2.8|~3.0.0",
+            "symfony/polyfill-intl-icu": "~1.0",
+            "symfony/routing": "~2.2|~3.0.0",
+            "symfony/security": "~2.6|~3.0.0",
+            "symfony/security-acl": "~2.6|~3.0.0",
+            "symfony/stopwatch": "~2.2|~3.0.0",
+            "symfony/templating": "~2.1|~3.0.0",
+            "symfony/translation": "~2.7|~3.0.0",
+            "symfony/var-dumper": "~2.7.16|~2.8.9|~3.0.9",
+            "symfony/yaml": "~2.0,>=2.0.5|~3.0.0"
+        },
+        "suggest": {
+            "symfony/asset": "For using the AssetExtension",
+            "symfony/expression-language": "For using the ExpressionExtension",
+            "symfony/finder": "",
+            "symfony/form": "For using the FormExtension",
+            "symfony/http-kernel": "For using the HttpKernelExtension",
+            "symfony/routing": "For using the RoutingExtension",
+            "symfony/security": "For using the SecurityExtension",
+            "symfony/stopwatch": "For using the StopwatchExtension",
+            "symfony/templating": "For using the TwigEngine",
+            "symfony/translation": "For using the TranslationExtension",
+            "symfony/var-dumper": "For using the DumpExtension",
+            "symfony/yaml": "For using the YamlExtension"
+        },
+        "time": "2017-01-21T16:40:50+00:00",
+        "type": "symfony-bridge",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.8-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Bridge\\Twig\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Twig Bridge",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "heroku/heroku-buildpack-php",
+        "version": "v119",
+        "version_normalized": "119.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/heroku/heroku-buildpack-php.git",
+            "reference": "26ebb69005d467d45f75797c1594f60818ba3fce"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/26ebb69005d467d45f75797c1594f60818ba3fce",
+            "reference": "26ebb69005d467d45f75797c1594f60818ba3fce",
+            "shasum": ""
+        },
+        "time": "2017-01-21T00:39:13+00:00",
+        "bin": [
+            "bin/heroku-hhvm-apache2",
+            "bin/heroku-hhvm-nginx",
+            "bin/heroku-php-apache2",
+            "bin/heroku-php-nginx"
+        ],
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "David Zuelke",
+                "email": "dz@heroku.com"
+            }
+        ],
+        "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP/HHVM and Apache2/Nginx as on Heroku",
+        "homepage": "https://github.com/heroku/heroku-buildpack-php",
+        "keywords": [
+            "apache",
+            "apache2",
+            "foreman",
+            "heroku",
+            "hhvm",
+            "nginx",
+            "php"
         ]
+    },
+    {
+        "name": "symfony/debug",
+        "version": "v3.2.3",
+        "version_normalized": "3.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/debug.git",
+            "reference": "b4d9818f127c60ce21ed62c395da7df868dc8477"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/debug/zipball/b4d9818f127c60ce21ed62c395da7df868dc8477",
+            "reference": "b4d9818f127c60ce21ed62c395da7df868dc8477",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.9",
+            "psr/log": "~1.0"
+        },
+        "conflict": {
+            "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
+        },
+        "require-dev": {
+            "symfony/class-loader": "~2.8|~3.0",
+            "symfony/http-kernel": "~2.8|~3.0"
+        },
+        "time": "2017-01-28T02:37:08+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Debug\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Debug Component",
+        "homepage": "https://symfony.com"
     }
 ]

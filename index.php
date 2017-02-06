@@ -41,7 +41,8 @@ if (!$result) {
     $answer = "I don't understand.Please Ask me 'hi'.";
 } else {
 	$row=pg_fetch_assoc($result);
-	$uname = $row['username'];
+	$uname = trim($row['username']);
+
 }
 
 
