@@ -4,17 +4,15 @@ require('vendor/autoload.php');
 $hubVerifyToken = 'TOKEN123456abcd';
 $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJIewMxpd5O4E5pTIPhWiYQVMEF3qOZA41Ru7BtRZCdnkMtnUiSViJZAJ1wIXF30EOLFCmwyewLiP9iGTZCMBrl4MZBZAToGMk7cvlQQ4IkqvVWVwZDZD";
 
-// $teleToken = "311805084:AAGSOoUfWn_hZm1yJHNKQLnqe0s2JTNv9aw";
-// $teleURL = "https://api.telegram.org/bot311805084:AAGSOoUfWn_hZm1yJHNKQLnqe0s2JTNv9aw/getMe";
 
-//$dbopts = parse_url("localhost/phpmyadmin");
-// $app->register(new Herrera\Pdo\PdoServiceProvider(),
-//                array(
-//                    'pdo.dsn' => 'pgsql:dbname=svnit;host=localhost;port=5432,'.
-//                    'pdo.username' => "root",
-//                    'pdo.password' => ""
-//                )
-// );
+$dbopts = parse_url("postgres://cmtddoqynjiyoy:ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356@ec2-54-243-55-1.compute-1.amazonaws.com:5432/dfi5om1rl2d9ev");
+$app->register(new Herrera\Pdo\PdoServiceProvider(),
+               array(
+                   'pdo.dsn' => 'pgsql:dbname=dfi5om1rl2d9ev;host=ec2-54-243-55-1.compute-1.amazonaws.com;port=5432,'.
+                   'pdo.username' => "cmtddoqynjiyoy",
+                   'pdo.password' => "ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356"
+               )
+);
 
 // check token at setup
 if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
@@ -52,24 +50,6 @@ $response = [
     'message' => [ 'text' => $answer.$senderId ]
 ];
 
-// $response1 = [
-//   'recipient'=>['id'=> $senderId ],
-//   'message' => [
-//     "text" => "Pick a color:",
-//     "quick_replies" => [
-//       {
-//         "content_type"=>"text",
-//         "title"=>"Red",
-//         "payload"=>"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
-//       },
-//       {
-//         "content_type"=>"text",
-//         "title"=>"Green",
-//         "payload"=>"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
-//       }
-//     ]
-//   ]
-// ];
 
 	
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
