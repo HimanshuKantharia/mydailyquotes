@@ -27,7 +27,7 @@ $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
 $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
 
-$result = pg_query($conn,"SELECT * FROM user where id = ".$senderId);
+$result = pg_query($conn,"SELECT * FROM user");
 $row=pg_fetch_assoc($result)
 
 
