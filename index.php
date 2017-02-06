@@ -31,6 +31,7 @@ echo $senderId."got<br>";
 
 // $senderId = "1473360329360719";
 // echo $senderId."receive<br>";
+$answer = "I don't understand.Please Ask me 'hi'.";
 
 $query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
 $result = pg_query($conn,$query);
@@ -40,8 +41,7 @@ if (!$result) {
     $answer = "I don't understand.Please Ask me 'hi'.";
 } else {
 	$row=pg_fetch_assoc($result);
-	echo $row['username'];
-	$answer = "name: ".$row['username'];
+	$uname = $row['username'];
 }
 
 
@@ -53,7 +53,7 @@ if (!$result) {
 if($messageText == "hi" || $messageText == 'Hi') {
 
 
-     $answer = "Hey Himanshu!";
+     $answer = "Hey ".$uname."!";
 
 } 
 else if ($messageText == "Time" || $messageText == "time") {
