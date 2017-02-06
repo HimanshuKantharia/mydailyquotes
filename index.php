@@ -30,10 +30,10 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 $result = pg_query($conn,"SELECT * FROM user");
 if (!$result) { 
     echo "Problem with query " . $query . "<br/>"; 
-
+    echo pg_last_error(); 
     $answer = "I don't understand.Please Ask me 'hi'.";
 } else {
-	$row = pg_fetch_assoc($result);
+	$row=pg_fetch_assoc($result);
 	$answer = $row['username'];
 }
 
