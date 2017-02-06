@@ -26,8 +26,8 @@ $input = json_decode(file_get_contents('php://input'), true);
 $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
 $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
-
-$result = pg_query($conn,"SELECT * FROM user");
+$query = "SELECT * FROM user";
+$result = pg_query($conn,$query);
 if (!$result) { 
     echo "Problem with query " . $query . "<br/>"; 
     echo pg_last_error(); 
