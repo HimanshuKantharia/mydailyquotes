@@ -32,7 +32,7 @@ echo $senderId."got<br>";
 $senderId = "1473360329360719";
 echo $senderId."receive<br>";
 
-$query = 'SELECT * FROM public."user" WHERE id= "1473360329360719"';
+$query = 'SELECT * FROM public.user WHERE id= "1473360329360719"';
 $result = pg_query($conn,$query);
 if (!$result) { 
     echo "Problem with query " . $query . "<br/>"; 
