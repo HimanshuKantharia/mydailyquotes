@@ -27,10 +27,10 @@ $senderId = "1473360329360719";
 $input = json_decode(file_get_contents('php://input'), true);
 $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
 $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
-echo $senderId."<br>";
+echo $senderId;
 
 $senderId = "1473360329360719";
-$query = 'SELECT * FROM public."user"';
+$query = 'SELECT * FROM public."user" WHERE id= "'.$senderId.'"';
 $result = pg_query($conn,$query);
 if (!$result) { 
     echo "Problem with query " . $query . "<br/>"; 
