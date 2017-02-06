@@ -26,7 +26,14 @@ $input = json_decode(file_get_contents('php://input'), true);
 $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
 $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
-$answer = "I don't understand.Please Ask me 'hi'.";
+
+$result = pg_query($conn,"SELECT * FROM user where id = ".$senderId);
+$row=pg_fetch_assoc($result)
+
+
+
+
+$answer = "I don't understand.Please Ask me 'hi'.".$row['username'];
 
 if($messageText == "hi" || $messageText == 'Hi') {
 
