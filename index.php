@@ -34,7 +34,8 @@ if (!$result) {
     $answer = "I don't understand.Please Ask me 'hi'.";
 } else {
 	$row=pg_fetch_assoc($result);
-	$answer = $row['username'];
+	echo $row['username'];
+	$answer = "name: ".$row['username'];
 }
 
 
