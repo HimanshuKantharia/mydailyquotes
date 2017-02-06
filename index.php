@@ -14,7 +14,7 @@ $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJI
 //                )
 // );
 
-$conn = pg_connect("host=postgres://cmtddoqynjiyoy:ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356@ec2-54-243-55-1.compute-1.amazonaws.com:5432/dfi5om1rl2d9ev port=5432 dbname=dfi5om1rl2d9ev user=cmtddoqynjiyoy password=ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356 sslmode=require");
+$conn = pg_connect("host=ec2-54-243-55-1.compute-1.amazonaws.com port=5432 dbname=dfi5om1rl2d9ev user=cmtddoqynjiyoy password=ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356 sslmode=require");
 
 // check token at setup
 if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
