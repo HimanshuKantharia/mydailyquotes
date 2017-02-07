@@ -54,11 +54,7 @@ if($messageText == "hi" || $messageText == 'Hi') {
 
 
      $answer = "Hey ".$uname."!";
-     $response = [
-    'recipient' => [ 'id' => $senderId ],
-    'message' => [ 'text' => $answer ]
-	];
-
+ 
 } 
 else if ($messageText == "Time" || $messageText == "time") {
 	$jsondate = file_get_contents("https://script.googleusercontent.com/macros/echo?user_content_key=MwFNcl0KVozlITfkYtONGeBbBrGl1rnO8t0EIrYYKlsSiwzC-Kh2ogcpvBZxRZUJLgumLvhll4Sl-70MQrllKOt4k-Rnhq50m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJ9GRkcRevgjTvo8Dc32iw_BLJPcPfRdVKhJT5HNzQuXEeN3QFwl2n0M6ZmO-h7C6bwVq0tbM60-xcVIW3tKXBXruTRuukcZWQ&lib=MwxUjRcLr2qLlnVOLh12wSNkqcO1Ikdrk");
@@ -70,10 +66,7 @@ else if ($messageText == "Time" || $messageText == "time") {
  		} else {
  			$answer = "Time is Not Available...";
  		}
- 	$response = [
-    'recipient' => [ 'id' => $senderId ],
-    'message' => [ 'text' => $answer ]
-	];
+ 	
 	
 } elseif($messageText == "Me" || $messageText == "me"){
 	$url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
@@ -91,6 +84,8 @@ else if ($messageText == "Time" || $messageText == "time") {
 	echo $resp;
 	$resp = json_decode($resp);
 	echo $resp->first_name;
+
+	$answer = $resp->first_name;
 // Close request to clear up some resources
 	curl_close($curl);
 	exit(1);
@@ -98,7 +93,10 @@ else if ($messageText == "Time" || $messageText == "time") {
 
 
 
-
+	$response = [
+    'recipient' => [ 'id' => $senderId ],
+    'message' => [ 'text' => $answer ]
+	];
 
 	
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
