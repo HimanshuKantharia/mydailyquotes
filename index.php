@@ -89,6 +89,8 @@ else if ($messageText == "Time" || $messageText == "time") {
 // Send the request & save response to $resp
 	$resp = curl_exec($curl);
 	echo $resp;
+	$resp = json_decode($resp);
+	echo $resp->first_name;
 // Close request to clear up some resources
 	curl_close($curl);
 	exit(1);
