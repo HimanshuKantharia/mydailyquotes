@@ -43,7 +43,6 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	$lname = $resp->last_name;
 	$gender = $resp->gender;
 
-	$answer = "myself : ".$fname;
 
 	$query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
 	$result1 = pg_query($conn,$query1);
@@ -68,10 +67,10 @@ if($messageText == "hi" || $messageText == 'Hi') {
 	    $answer = "I don't understand.Please Ask me 'hi'.";
 	} else {
 		$row=pg_fetch_assoc($result);
-		$uname = trim($row['fname']);
-
+		$fname = trim($row['fname']);
+		$lname = trim($row['lname']);
 	}
-    $answer = "Hey ".$uname."!";
+    $answer = "Hey ".$uname." ".$lname"!";
  
 } 
 else if ($messageText == "Time" || $messageText == "time") {
