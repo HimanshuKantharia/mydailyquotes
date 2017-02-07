@@ -80,7 +80,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 	// $query1 = "UPDATE public.user SET (id,fname,lname,gender) = ('$senderId','$fname','$lname','$gender') WHERE id= '".$senderId."'";
 	// $result1 = pg_query($conn,$query);
 
-	$query = "INSERT INTO public.user SET (id,fname,lname,gender) VALUES ('$senderId','$fname','$lname','$gender')";
+	$query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
 
 	$result = pg_query($conn,$query);
 
