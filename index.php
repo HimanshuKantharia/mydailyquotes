@@ -5,14 +5,6 @@ $hubVerifyToken = 'TOKEN123456abcd';
 $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJIewMxpd5O4E5pTIPhWiYQVMEF3qOZA41Ru7BtRZCdnkMtnUiSViJZAJ1wIXF30EOLFCmwyewLiP9iGTZCMBrl4MZBZAToGMk7cvlQQ4IkqvVWVwZDZD";
 
 
-// $dbopts = parse_url("postgres://cmtddoqynjiyoy:ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356@ec2-54-243-55-1.compute-1.amazonaws.com:5432/dfi5om1rl2d9ev");
-// $app->register(new Herrera\Pdo\PdoServiceProvider(),
-//                array(
-//                    'pdo.dsn' => 'pgsql:dbname=dfi5om1rl2d9ev;host=ec2-54-243-55-1.compute-1.amazonaws.com;port=5432,'.
-//                    'pdo.username' => "cmtddoqynjiyoy",
-//                    'pdo.password' => "ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356"
-//                )
-// );
 
 $conn = pg_connect("host=ec2-54-243-55-1.compute-1.amazonaws.com port=5432 dbname=dfi5om1rl2d9ev user=cmtddoqynjiyoy password=ee61e2ab338eadd716e5f6f20f0ea3b8c1223b826b9e06557d5aa77a1abe5356 sslmode=require");
 
@@ -27,33 +19,28 @@ if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
 $input = json_decode(file_get_contents('php://input'), true);
 $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
 $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
-echo $senderId."got<br>";
+
 
 // $senderId = "1473360329360719";
-// echo $senderId."receive<br>";
+
 $answer = "I don't understand.Please Ask me 'hi'.";
 
-$query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
-$result = pg_query($conn,$query);
-if (!$result) { 
-    echo "Problem with query " . $query . "<br/>"; 
-    echo pg_last_error(); 
-    $answer = "I don't understand.Please Ask me 'hi'.";
-} else {
-	$row=pg_fetch_assoc($result);
-	$uname = trim($row['username']);
 
-}
-
-
-
-
-// $answer = "I don't understand.Please Ask me 'hi'.".$row['username'];
 
 if($messageText == "hi" || $messageText == 'Hi') {
 
+	$query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
+	$result = pg_query($conn,$query);
+	if (!$result) { 
+	    echo "Problem with query " . $query . "<br/>"; 
+	    echo pg_last_error(); 
+	    $answer = "I don't understand.Please Ask me 'hi'.";
+	} else {
+		$row=pg_fetch_assoc($result);
+		$uname = trim($row['username']);
 
-     $answer = "Hey ".$uname."!";
+	}
+    $answer = "Hey ".$uname."!";
  
 } 
 else if ($messageText == "Time" || $messageText == "time") {
@@ -61,33 +48,51 @@ else if ($messageText == "Time" || $messageText == "time") {
 	
 	$res = json_decode($jsondate);
 
- 		if(!empty($res)) {
- 			$answer = "Now - Time : " .$res->hours.":".$res->minutes.":".$res->seconds." Date : ".$res->day." / ".$res->month." / ".$res->year;
- 		} else {
- 			$answer = "Time is Not Available...";
- 		}
+	if(!empty($res)) {
+		$answer = "Now - Time : " .$res->hours.":".$res->minutes.":".$res->seconds." Date : ".$res->day." / ".$res->month." / ".$res->year;
+	} else {
+		$answer = "Time is Not Available...";
+	}
  	
 	
 } elseif($messageText == "Me" || $messageText == "me"){
 	$url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
-	// parse_url($url);
-
+	
 	$curl = curl_init();
-// Set some options - we are passing in a useragent too here
+
 	curl_setopt_array($curl, array(
     CURLOPT_RETURNTRANSFER => 1,
     CURLOPT_URL => $url,
 	));
 
-// Send the request & save response to $resp
 	$resp = curl_exec($curl);
-	echo $resp;
+	curl_close($curl);
+	
 	$resp = json_decode($resp);
 	echo $resp->first_name;
 
-	$answer = "myself : ".$resp->first_name;
-// Close request to clear up some resources
-	curl_close($curl);
+	$fname = $resp->firstname;
+	$lname = $resp->last_name;
+	$gender = $resp->gender;
+
+	$answer = "myself : ".$fname;
+
+	$query1 = "UPDATE public.user SET (id,fname,lname,gender) = ('$senderId','$fname','$lname','$gender') WHERE id= '".$senderId."'";
+	$result1 = pg_query($conn,$query);
+
+	$query = "INSERT INTO public.user SET (id,fname,lname,gender) = ('$senderId','$fname','$lname','$gender') WHERE id= '".$senderId."'";
+
+	$result = pg_query($conn,$query);
+
+	if (!$result) { 
+	    echo "Problem with query " . $query . "<br/>"; 
+	    echo pg_last_error(); 
+	    $answer = "I don't understand.Please Ask me 'hi'.";
+	} else {
+		$row=pg_fetch_assoc($result);
+		$uname = trim($row['username']);
+
+	}
 	
 }
 
@@ -100,10 +105,13 @@ else if ($messageText == "Time" || $messageText == "time") {
 
 	
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
+// Set some options - we are passing in a useragent too here
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+// Send the request & save response to $resp
 if(!empty($messageText)){
 	curl_exec($ch);
 }
+// Close request to clear up some resources
 curl_close($ch);
