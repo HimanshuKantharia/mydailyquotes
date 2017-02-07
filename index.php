@@ -87,16 +87,8 @@ else if ($messageText == "Time" || $messageText == "time") {
 		$result = pg_query($conn,$query);
 	} 
 	
-
-	if (!$result) { 
-	    echo "Problem with query " . $query . "<br/>"; 
-	    echo pg_last_error(); 
-	    $answer = "I don't understand.Please Ask me 'hi'.";
-	} else {
-		$row=pg_fetch_assoc($result);
-		$uname = trim($row['username']);
-		$answer = "Hey ".$uname."!";
-	}
+		$answer = "Hey ".$fname."!";
+	
 	
 }
 
