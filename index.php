@@ -37,7 +37,7 @@ if($messageText == "hi" || $messageText == 'Hi') {
 	    $answer = "I don't understand.Please Ask me 'hi'.";
 	} else {
 		$row=pg_fetch_assoc($result);
-		$uname = trim($row['username']);
+		$uname = trim($row['fname']);
 
 	}
     $answer = "Hey ".$uname."!";
