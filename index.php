@@ -85,10 +85,10 @@ else if ($messageText == "Time" || $messageText == "time") {
 	$resp = json_decode($resp);
 	echo $resp->first_name;
 
-	$answer = $resp->first_name;
+	$answer = "myself : ".$resp->first_name;
 // Close request to clear up some resources
 	curl_close($curl);
-	exit(1);
+	
 }
 
 
