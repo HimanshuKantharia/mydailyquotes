@@ -25,6 +25,37 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
 $answer = "I don't understand.Please Ask me 'hi'.";
 
+$url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
+	
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_URL => $url,
+	));
+
+	$resp = curl_exec($curl);
+	curl_close($curl);
+	
+	$resp = json_decode($resp);
+	echo $resp->first_name;
+
+	$fname = $resp->first_name;
+	$lname = $resp->last_name;
+	$gender = $resp->gender;
+
+	$answer = "myself : ".$fname;
+
+	$query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
+	$result1 = pg_query($conn,$query1);
+
+	if (!$result1) { 
+	    
+	    $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
+
+		$result = pg_query($conn,$query);
+	} 
+	
+	$answer = "Hey ".$fname."!";
 
 
 if($messageText == "hi" || $messageText == 'Hi') {
@@ -54,44 +85,8 @@ else if ($messageText == "Time" || $messageText == "time") {
 		$answer = "Time is Not Available...";
 	}
  	
+} 
 	
-} elseif($messageText == "Me" || $messageText == "me"){
-	$url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
-	
-	$curl = curl_init();
-
-	curl_setopt_array($curl, array(
-    CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL => $url,
-	));
-
-	$resp = curl_exec($curl);
-	curl_close($curl);
-	
-	$resp = json_decode($resp);
-	echo $resp->first_name;
-
-	$fname = $resp->first_name;
-	$lname = $resp->last_name;
-	$gender = $resp->gender;
-
-	$answer = "myself : ".$fname;
-
-	$query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
-	$result1 = pg_query($conn,$query1);
-
-	if (!$result1) { 
-	    
-	    $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
-
-		$result = pg_query($conn,$query);
-	} 
-	
-		$answer = "Hey ".$fname."!";
-	
-	
-}
-
 
 	$response = [
     'recipient' => [ 'id' => $senderId ],
