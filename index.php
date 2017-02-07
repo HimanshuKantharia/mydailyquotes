@@ -95,7 +95,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 	} else {
 		$row=pg_fetch_assoc($result);
 		$uname = trim($row['username']);
-
+		$answer = "Hey ".$uname."!";
 	}
 	
 }
