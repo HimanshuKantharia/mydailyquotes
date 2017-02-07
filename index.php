@@ -70,7 +70,7 @@ if($messageText == "hi" || $messageText == 'Hi') {
 		$fname = trim($row['fname']);
 		$lname = trim($row['lname']);
 	}
-    $answer = "Hey ".$uname."!";
+    $answer = "Hey ".$fname." ".$lname."!";
  
 } 
 else if ($messageText == "Time" || $messageText == "time") {
