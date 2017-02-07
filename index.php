@@ -78,11 +78,14 @@ else if ($messageText == "Time" || $messageText == "time") {
 	$answer = "myself : ".$fname;
 
 	$query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender') WHERE id= '".$senderId."'";
-	$result1 = pg_query($conn,$query);
+	$result1 = pg_query($conn,$query1);
 
-	$query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
+	if (!$result1) { 
+	    $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
 
-	$result = pg_query($conn,$query);
+		$result = pg_query($conn,$query);
+	} 
+	
 
 	if (!$result) { 
 	    echo "Problem with query " . $query . "<br/>"; 
