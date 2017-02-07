@@ -71,14 +71,14 @@ else if ($messageText == "Time" || $messageText == "time") {
 	$resp = json_decode($resp);
 	echo $resp->first_name;
 
-	$fname = $resp->firstname;
+	$fname = $resp->first_name;
 	$lname = $resp->last_name;
 	$gender = $resp->gender;
 
 	$answer = "myself : ".$fname;
 
-	// $query1 = "UPDATE public.user SET (id,fname,lname,gender) = ('$senderId','$fname','$lname','$gender') WHERE id= '".$senderId."'";
-	// $result1 = pg_query($conn,$query);
+	$query1 = "UPDATE public.user SET (id,fname,lname,gender) = ('$senderId','$fname','$lname','$gender') WHERE id= '".$senderId."'";
+	$result1 = pg_query($conn,$query);
 
 	$query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
 
