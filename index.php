@@ -77,10 +77,10 @@ else if ($messageText == "Time" || $messageText == "time") {
 
 	$answer = "myself : ".$fname;
 
-	$query1 = "UPDATE public.user SET (id,fname,lname,gender) = ('$senderId','$fname','$lname','$gender') WHERE id= '".$senderId."'";
-	$result1 = pg_query($conn,$query);
+	// $query1 = "UPDATE public.user SET (id,fname,lname,gender) = ('$senderId','$fname','$lname','$gender') WHERE id= '".$senderId."'";
+	// $result1 = pg_query($conn,$query);
 
-	$query = "INSERT INTO public.user SET (id,fname,lname,gender) = ('$senderId','$fname','$lname','$gender') WHERE id= '".$senderId."'";
+	$query = "INSERT INTO public.user SET (id,fname,lname,gender) = ('$senderId','$fname','$lname','$gender')";
 
 	$result = pg_query($conn,$query);
 
@@ -95,7 +95,6 @@ else if ($messageText == "Time" || $messageText == "time") {
 	}
 	
 }
-
 
 
 	$response = [
