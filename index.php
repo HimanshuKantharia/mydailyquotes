@@ -22,7 +22,7 @@ if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
   exit;
 }
 
-$senderId = "1473360329360719";
+//$senderId = "1473360329360719";
 // handle bot's anwser
 $input = json_decode(file_get_contents('php://input'), true);
 $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
@@ -48,13 +48,16 @@ if (!$result) {
 
 
 
-
 // $answer = "I don't understand.Please Ask me 'hi'.".$row['username'];
 
 if($messageText == "hi" || $messageText == 'Hi') {
 
 
      $answer = "Hey ".$uname."!";
+     $response = [
+    'recipient' => [ 'id' => $senderId ],
+    'message' => [ 'text' => $answer ]
+	];
 
 } 
 else if ($messageText == "Time" || $messageText == "time") {
@@ -67,13 +70,32 @@ else if ($messageText == "Time" || $messageText == "time") {
  		} else {
  			$answer = "Time is Not Available...";
  		}
+ 	$response = [
+    'recipient' => [ 'id' => $senderId ],
+    'message' => [ 'text' => $answer ]
+	];
+	
+} elseif($messageText == "Me" || $messageText == "me"){
+	$url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
+	// parse_url($url);
+
+	$curl = curl_init();
+// Set some options - we are passing in a useragent too here
+	curl_setopt_array($curl, array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_URL => $url,
+	));
+
+// Send the request & save response to $resp
+	$resp = curl_exec($curl);
+	echo $resp;
+// Close request to clear up some resources
+	curl_close($curl);
+	exit(1);
 }
 
 
-$response = [
-    'recipient' => [ 'id' => $senderId ],
-    'message' => [ 'text' => $answer ]
-];
+
 
 
 	
