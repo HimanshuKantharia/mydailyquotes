@@ -60,18 +60,18 @@ $answer = "I don't understand.Please Ask me 'hi'.";
 
 if($messageText == "hi" || $messageText == 'Hi') {
 
-	$query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
-	$result = pg_query($conn,$query);
-	if (!$result) { 
-	    echo "Problem with query " . $query . "<br/>"; 
-	    echo pg_last_error(); 
-	    $answer = "I don't understand.Please Ask me 'hi'.";
-	} else {
-		$row=pg_fetch_assoc($result);
-		$fname = trim($row['fname']);
-		$lname = trim($row['lname']);
-	}
-    $answer = "Hey ".$fname." ".$lname."!";
+	// $query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
+	// $result = pg_query($conn,$query);
+	// if (!$result) { 
+	//     echo "Problem with query " . $query . "<br/>"; 
+	//     echo pg_last_error(); 
+	//     $answer = "I don't understand.Please Ask me 'hi'.";
+	// } else {
+	// 	$row=pg_fetch_assoc($result);
+	// 	$fname = trim($row['fname']);
+	// 	$lname = trim($row['lname']);
+	// }
+ //    $answer = "Hey ".$fname." ".$lname."!";
  
 } 
 else if ($messageText == "Time" || $messageText == "time") {
