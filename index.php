@@ -55,7 +55,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 		$result = pg_query($conn,$query);
 	} 
 	
-	$answer = "Hey ".$fname."!";
+	//$answer = "Hey ".$fname."!";
 
 
 if($messageText == "hi" || $messageText == 'Hi') {
@@ -92,7 +92,7 @@ else if ($messageText == "Time" || $messageText == "time") {
     'recipient' => [ 'id' => $senderId ],
     'message' => [ 'text' => $answer ]
 	];
-	
+
 // $response = '{
 //     "recipient":{
 //         "id":"' . $senderId . '"
