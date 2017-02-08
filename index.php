@@ -48,7 +48,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	$query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
 	$result1 = pg_query($conn,$query1);
 
-	if (!$result1) { 
+	if (!$result1 === true) { 
 	    
 	    $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
 
@@ -60,34 +60,34 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 
 if($messageText == "hi" || $messageText == 'Hi') {
 
-	$url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
+	// $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
 	
-	$curl = curl_init();
-	curl_setopt_array($curl, array(
-    CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL => $url,
-	));
+	// $curl = curl_init();
+	// curl_setopt_array($curl, array(
+ //    CURLOPT_RETURNTRANSFER => 1,
+ //    CURLOPT_URL => $url,
+	// ));
 
-	$resp = curl_exec($curl);
-	curl_close($curl);
+	// $resp = curl_exec($curl);
+	// curl_close($curl);
 	
-	$resp = json_decode($resp);
-	echo $resp->first_name;
+	// $resp = json_decode($resp);
+	// echo $resp->first_name;
 
-	$fname = $resp->first_name;
-	$lname = $resp->last_name;
-	$gender = $resp->gender;
+	// $fname = $resp->first_name;
+	// $lname = $resp->last_name;
+	// $gender = $resp->gender;
 
 
-	$query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
-	$result1 = pg_query($conn,$query1);
+	// $query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
+	// $result1 = pg_query($conn,$query1);
 
-	if (!$result1) { 
+	// if (!$result1) { 
 	    
-	    $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
+	//     $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
 
-		$result = pg_query($conn,$query);
-	} 
+	// 	$result = pg_query($conn,$query);
+	// } 
 
 
 	$query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
