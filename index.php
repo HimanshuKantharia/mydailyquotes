@@ -22,45 +22,11 @@ $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
 $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
 
-// $senderId = "1473360329360719";
+$senderId = "1515521005145148";
 
 $answer = "I don't understand.Please Ask me 'hi'.";
 
-// $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
-	
-// 	$curl = curl_init();
-// 	curl_setopt_array($curl, array(
-//     CURLOPT_RETURNTRANSFER => 1,
-//     CURLOPT_URL => $url,
-// 	));
-
-// 	$resp = curl_exec($curl);
-// 	curl_close($curl);
-	
-// 	$resp = json_decode($resp);
-// 	echo $resp->first_name;
-
-// 	$fname = $resp->first_name;
-// 	$lname = $resp->last_name;
-// 	$gender = $resp->gender;
-
-
-// 	$query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
-// 	$result1 = pg_query($conn,$query1);
-
-// 	if (!$result1 === true) { 
-	    
-// 	    $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
-
-// 		$result = pg_query($conn,$query);
-// 	} 
-	
-	//$answer = "Hey ".$fname."!";
-
-
-if($messageText == "hi" || $messageText == 'Hi') {
-
-	$url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
+$url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
 	
 	$curl = curl_init();
 	curl_setopt_array($curl, array(
@@ -88,7 +54,13 @@ if($messageText == "hi" || $messageText == 'Hi') {
 
 		$result = pg_query($conn,$query);
 	} 
+	
+	//$answer = "Hey ".$fname."!";
 
+
+if($messageText == "hi" || $messageText == 'Hi') {
+
+	
 
 	$query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
