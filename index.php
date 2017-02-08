@@ -14,7 +14,9 @@ if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
   exit;
 }
 
-//$senderId = "1473360329360719";
+//$senderId = "1473360329360719"; himan
+//$senderId = "1515521005145148"; yash
+
 // handle bot's anwser
 $input = json_decode(file_get_contents('php://input'), true);
 
@@ -22,7 +24,6 @@ $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
 $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
 
-$senderId = "1515521005145148";
 
 $answer = "I don't understand.Please Ask me 'hi'.";
 
@@ -45,7 +46,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	$gender = $resp->gender;
 
 
-	$query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
+	$query1 = "UPDATE public.user SET fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
 	$result1 = pg_query($conn,$query1);
 
 	if (pg_affected_rows($result1) < 1) { 
