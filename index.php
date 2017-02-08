@@ -17,6 +17,7 @@ if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
 //$senderId = "1473360329360719";
 // handle bot's anwser
 $input = json_decode(file_get_contents('php://input'), true);
+
 $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
 $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
@@ -87,11 +88,18 @@ else if ($messageText == "Time" || $messageText == "time") {
 } 
 	
 
-	$response = [
-    'recipient' => [ 'id' => $senderId ],
-    'message' => [ 'text' => $answer ]
-	];
-
+	// $response = [
+ //    'recipient' => [ 'id' => $senderId ],
+ //    'message' => [ 'text' => $answer ]
+	// ];
+$response = '{
+    "recipient":{
+        "id":"' . $senderId . '"
+    }, 
+    "message":{
+        "text":"'.$answer.'"
+    }
+}';
 	
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 // Set some options - we are passing in a useragent too here
