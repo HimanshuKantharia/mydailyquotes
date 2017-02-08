@@ -82,7 +82,7 @@ if($messageText == "hi" || $messageText == 'Hi') {
 	$query1 = "UPDATE public.user SET id = '$senderId',fname = '$fname',lname = '$lname',gender = '$gender' WHERE id= '".$senderId."'";
 	$result1 = pg_query($conn,$query1);
 
-	if (pg_num_rows($result1) == -1) { 
+	if (pg_affected_rows($result1) < 1) { 
 	    
 	    $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
 
