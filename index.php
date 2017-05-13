@@ -112,11 +112,13 @@ else if ($messageText == "Time" || $messageText == "time") {
 	}
 } else if($messageText == "quote"){
 	// These code snippets use an open-source library.
-		$response = Unirest\Request::get("https://healthruwords.p.mashape.com/v1/quotes/?id=731&maxR=1&size=medium&t=Wisdom",
-	  	array(
+		// These code snippets use an open-source library.
+	$response = Unirest\Request::post("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=1",
+	  array(
 	    "X-Mashape-Key" => "RjFaPuxwyPmshu5ioZYL3bmWPMO4p1smZPijsnM5Iq6Ry3BeOk",
+	    "Content-Type" => "application/x-www-form-urlencoded",
 	    "Accept" => "application/json"
-	    )
+	  )
 	);
 	echo $response;
 	if(!empty($response)){
