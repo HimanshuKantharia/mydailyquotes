@@ -110,23 +110,23 @@ else if ($messageText == "Time" || $messageText == "time") {
 	} else {
 		$answer = "Sad to see you unsubscribe";
 	}
-	
-} else if($messageText == "quote"){
-	// These code snippets use an open-source library.
-		// These code snippets use an open-source library.
-	$response1 = Unirest\Request::post("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=1",
-	  array(
-	    "X-Mashape-Key" => "RjFaPuxwyPmshu5ioZYL3bmWPMO4p1smZPijsnM5Iq6Ry3BeOk",
-	    "Content-Type" => "application/x-www-form-urlencoded",
-	    "Accept" => "application/json"
-	  )
-	);
-	echo $response1;
-	if(!empty($response1)){
-		$jsondata = json_decode($response);
-		$message = "Author : " . $jsondata->author;
-	}
 }
+// } else if($messageText == "quote"){
+// 	// These code snippets use an open-source library.
+// 		// These code snippets use an open-source library.
+// 	$response1 = Unirest\Request::post("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=1",
+// 	  array(
+// 	    "X-Mashape-Key" => "RjFaPuxwyPmshu5ioZYL3bmWPMO4p1smZPijsnM5Iq6Ry3BeOk",
+// 	    "Content-Type" => "application/x-www-form-urlencoded",
+// 	    "Accept" => "application/json"
+// 	  )
+// 	);
+// 	echo $response1;
+// 	if(!empty($response1)){
+// 		$jsondata = json_decode($response);
+// 		$message = "Author : " . $jsondata->author;
+// 	}
+// }
 	
 
 	$response = [
