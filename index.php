@@ -121,7 +121,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 	    "Accept" => "application/json"
 	  )
 	);
-	echo ($response1->body);
+	echo $response1->body;
 	if(!empty($response1)){
 		$jsondata = json_decode($response1->body);
 		$answer = "Author : " . $jsondata->author;
