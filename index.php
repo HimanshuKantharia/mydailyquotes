@@ -122,10 +122,10 @@ else if ($messageText == "Time" || $messageText == "time") {
 	  )
 	);
 	print_r($response->body);
-	// if(!empty($response1)){
-	// 	$jsondata = json_decode($response);
-	// 	$message = "Author : " . $jsondata->author;
-	// }
+	if(!empty($response1)){
+		$jsondata = json_decode($response->body);
+		$answer = "Author : " . $jsondata->author;
+	}
 }
 	
 
