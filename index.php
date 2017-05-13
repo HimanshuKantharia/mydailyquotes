@@ -131,9 +131,9 @@ else if ($messageText == "Time" || $messageText == "time") {
 
 	$response = [
     'recipient' => [ 'id' => $senderId ],
-    'message' => [ 'text' => $answer , 'quick_replies' => [
-    							{'content_type' => 'text', 'title' => 'Quote', 'payload' => 'payload for more quote'}
-    							]
+    'message' => [ 'text' => $answer , 
+    				'quick_replies' => {'content_type' => 'text', 'title' => 'Quote', 'payload' => 'payload for more quote'}
+    						
     			]
 	];
 
