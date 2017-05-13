@@ -130,11 +130,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 	
 	$qr = ['content_type' => 'text', 'title' => 'Quote', 'payload' => 'payload'];
 
-	{
-        "content_type":"text",
-        "title":"Red",
-        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
-      },
+	
 
 	$response = [
     'recipient' => [ 'id' => $senderId ],
