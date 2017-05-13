@@ -100,6 +100,29 @@ else if ($messageText == "Time" || $messageText == "time") {
 	} else {
 		$answer = "Thank you for subscribing..";
 	}
+} else if(strtolower($messageText) == 'unsubscribe'){
+	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
+	$result = pg_query($conn,$query);
+	if (!$result) { 
+	    echo "Problem with query " . $query . "<br/>"; 
+	    echo pg_last_error(); 
+	    $answer = "Not found,Please Ask me 'hi'.";
+	} else {
+		$answer = "Sad to see you unsubscribe";
+	}
+} else if($messageText == "quote"){
+	// These code snippets use an open-source library.
+		$response = Unirest\Request::get("https://healthruwords.p.mashape.com/v1/quotes/?id=731&maxR=1&size=medium&t=Wisdom",
+	  	array(
+	    "X-Mashape-Key" => "RjFaPuxwyPmshu5ioZYL3bmWPMO4p1smZPijsnM5Iq6Ry3BeOk",
+	    "Accept" => "application/json"
+	    )
+	);
+
+	if(!empty($response)){
+		$jsondata = json_decode($response);
+		$message = "Author : " . $jsondata->author;
+	}
 }
 	
 
