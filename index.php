@@ -54,7 +54,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 
 	if (pg_affected_rows($result1) < 1) { 
 	    
-	    $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender')";
+	    $query = "INSERT INTO public.user VALUES ('$senderId','$fname','$lname','$gender','false')";
 
 		$result = pg_query($conn,$query);
 	} 
