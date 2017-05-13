@@ -91,7 +91,15 @@ else if ($messageText == "Time" || $messageText == "time") {
 	}
  	
 } else if(strtolower($messageText) == 'subscribe'){
-	$query = "UPDATE public.user SET subscribed = 'true' WHERE id= '".$senderId."'";
+	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
+	$result = pg_query($conn,$query);
+	if (!$result) { 
+	    echo "Problem with query " . $query . "<br/>"; 
+	    echo pg_last_error(); 
+	    $answer = "Not found,Please Ask me 'hi'.";
+	} else {
+		$answer = "Thank you for subscribing..";
+	}
 }
 	
 
