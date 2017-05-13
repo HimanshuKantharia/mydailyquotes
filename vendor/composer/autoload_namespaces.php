@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Unirest\\' => array($vendorDir . '/mashape/unirest-php/src'),
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Pimple' => array($vendorDir . '/pimple/pimple/lib'),
     'Herrera\\Pdo' => array($vendorDir . '/herrera-io/pdo-log/src/lib', $vendorDir . '/herrera-io/silex-pdo/src/lib'),
