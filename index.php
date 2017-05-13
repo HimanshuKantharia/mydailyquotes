@@ -128,7 +128,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 	}
 }
 	
-	$qr = {'content_type' => 'text', 'title' => 'Quote', 'payload' => 'payload for more quote'};
+	$qr = "{'content_type' => 'text', 'title' => 'Quote', 'payload' => 'payload for more quote'}";
 	$response = [
     'recipient' => [ 'id' => $senderId ],
     'message' => [ 'text' => $answer , 
