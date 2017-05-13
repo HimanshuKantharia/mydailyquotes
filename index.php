@@ -64,8 +64,6 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 
 if($messageText == "hi" || $messageText == 'Hi') {
 
-	
-
 	$query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
@@ -76,9 +74,9 @@ if($messageText == "hi" || $messageText == 'Hi') {
 		$row=pg_fetch_assoc($result);
 		$fname = trim($row['fname']);
 		$lname = trim($row['lname']);
-
+		$subs = trim($row['subscribed']);
 	}
-    $answer = "Hey ".$fname." ".$lname."!";
+    $answer = "Hey ".$fname." ".$lname."! " . $subs;
  
 } 
 else if ($messageText == "Time" || $messageText == "time") {
@@ -92,7 +90,9 @@ else if ($messageText == "Time" || $messageText == "time") {
 		$answer = "Time is Not Available...";
 	}
  	
-} 
+} else if(strtolower($messageText) == 'subscribe'){
+	$query = "UPDATE public.user SET subscribed = 'true' WHERE id= '".$senderId."'";
+}
 	
 
 	$response = [
