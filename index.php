@@ -197,7 +197,7 @@ if(!empty($messageText)){
 curl_close($ch);
 
 function timereply(){
-	$format = 'H';
-	$currtime = string date ( string $format [, int $timestamp = time() ] );
+	
+	$currtime =  date('m/d/Y h:i:s a', time());
 	$response = $currtime;
 }
