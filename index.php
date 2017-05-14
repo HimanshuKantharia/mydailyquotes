@@ -99,6 +99,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 	    $answer = "Not found,Please Ask me 'hi'.";
 	} else {
 		$answer = "Thank you for subscribing..";
+		$subs = !$subs;
 	}
 } else if(strtolower($messageText) == 'unsubscribe'){
 	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
@@ -109,6 +110,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 	    $answer = "Not found,Please Ask me 'hi'.";
 	} else {
 		$answer = "Sad to see you Unsubscribe";
+		$subs = !$subs;
 	}
 
 } else if($messageText == "One More Quote"){
