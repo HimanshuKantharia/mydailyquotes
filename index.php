@@ -135,14 +135,26 @@ else if ($messageText == "Time" || $messageText == "time") {
 	// ];
 
 $response = '{
-    "recipient":{
-        "id":"' . $senderId . '"
-    }, 
-    "message":{
-        "text":"' . $answer . '"
-    }
+	"recipient":{
+		"id":"' . $senderId . '"
+	}, 
+	"message":{
+		"text":"' . $answer . '",
+		"quick_replies":[
+		{
+			"content_type":"text",
+			"title":"Red",
+			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+		},
+		{
+			"content_type":"text",
+			"title":"Green",
+			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+		}
+		]
+	}
 }';
-	
+
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 // Set some options - we are passing in a useragent too here
 curl_setopt($ch, CURLOPT_POST, 1);
