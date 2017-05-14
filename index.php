@@ -124,31 +124,31 @@ else if ($messageText == "Time" || $messageText == "time") {
 	print_r($response1->raw_body);                            
 	if(!empty($response1)){
 		$jsondata = json_decode($response1->raw_body);
-		$answer = "\" ". $jsondata->quote . " \"\n" . "Author : " . $jsondata->author ;
+		$answer = '"'. $jsondata->quote . '"\n' . 'Author : ' . $jsondata->author ;
 	}
 }
 	
 
-	$response = [
-    'recipient' => [ 'id' => $senderId ],
-    'message' => [ 'text' => $answer]
-	];
+	// $response = [
+ //    'recipient' => [ 'id' => $senderId ],
+ //    'message' => [ 'text' => $answer]
+	// ];
 
-// $response = '{
-//     "recipient":{
-//         "id":"' . $senderId . '"
-//     }, 
-//     "message":{
-//         "text":"'.$answer.'"
-//     }
-// }';
+$response = '{
+    "recipient":{
+        "id":"' . $senderId . '"
+    }, 
+    "message":{
+        "text":"'.$answer.'"
+    }
+}';
 	
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 // Set some options - we are passing in a useragent too here
 curl_setopt($ch, CURLOPT_POST, 1);
 
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
-//curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
+//curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
+curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
 
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 // Send the request & save response to $resp
