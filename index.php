@@ -134,26 +134,50 @@ else if ($messageText == "Time" || $messageText == "time") {
  //    'message' => [ 'text' => $answer]
 	// ];
 
-$response = '{
-	"recipient":{
-		"id":"' . $senderId . '"
-	}, 
-	"message":{
-		"text":"' . $answer . '",
-		"quick_replies":[
-		{
-			"content_type":"text",
-			"title":"One More Quote",
-			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_OMQ"
-		},
-		{
-			"content_type":"text",
-			"title":"Unsubscribe",
-			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_UNSUBSCRIBE"
+if($subs == 't'){
+	$response = '{
+		"recipient":{
+			"id":"' . $senderId . '"
+		}, 
+		"message":{
+			"text":"' . $answer . '",
+			"quick_replies":[
+			{
+				"content_type":"text",
+				"title":"One More Quote",
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_OMQ"
+			},
+			{
+				"content_type":"text",
+				"title":"Unsubscribe",
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_UNSUBSCRIBE"
+			}
+			]
 		}
-		]
-	}
-}';
+	}';
+}else{
+	$response = '{
+		"recipient":{
+			"id":"' . $senderId . '"
+		}, 
+		"message":{
+			"text":"' . $answer . '",
+			"quick_replies":[
+			{
+				"content_type":"text",
+				"title":"One More Quote",
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_OMQ"
+			},
+			{
+				"content_type":"text",
+				"title":"Subscribe",
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_UNSUBSCRIBE"
+			}
+			]
+		}
+	}';
+}
+
 
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 // Set some options - we are passing in a useragent too here
