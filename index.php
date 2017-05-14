@@ -195,4 +195,3 @@ if(!empty($messageText)){
 }
 // Close request to clear up some resources
 curl_close($ch);
-
