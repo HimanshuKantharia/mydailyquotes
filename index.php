@@ -124,7 +124,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 	print_r($response1->raw_body);                            
 	if(!empty($response1)){
 		$jsondata = json_decode($response1->raw_body);
-		$answer = '"'. $jsondata->quote . '"\n' . 'Author : ' . $jsondata->author ;
+		$answer = $jsondata->quote . '\nAuthor : ' . $jsondata->author ;
 	}
 }
 	
@@ -139,7 +139,7 @@ $response = '{
         "id":"' . $senderId . '"
     }, 
     "message":{
-        "text":"'.$answer.'"
+        "text":"' . $answer . '"
     }
 }';
 	
