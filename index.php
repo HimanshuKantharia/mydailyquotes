@@ -179,7 +179,7 @@ if($subs == 't'){
 		}
 	}';
 }
-timereply();
+
 
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 // Set some options - we are passing in a useragent too here
@@ -196,8 +196,3 @@ if(!empty($messageText)){
 // Close request to clear up some resources
 curl_close($ch);
 
-function timereply(){
-	
-	$currtime =  date('m/d/Y h:i:s a', time());
-	$response = $currtime;
-}
