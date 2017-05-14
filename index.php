@@ -108,10 +108,10 @@ else if ($messageText == "Time" || $messageText == "time") {
 	    echo pg_last_error(); 
 	    $answer = "Not found,Please Ask me 'hi'.";
 	} else {
-		$answer = "Sad to see you unsubscribe";
+		$answer = "Sad to see you Unsubscribe";
 	}
 
-} else if($messageText == "quote"){
+} else if($messageText == "One More Quote"){
 	// These code snippets use an open-source library.
 		// These code snippets use an open-source library.
 	$response1 = Unirest\Request::post("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=1",
@@ -143,13 +143,13 @@ $response = '{
 		"quick_replies":[
 		{
 			"content_type":"text",
-			"title":"Red",
-			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+			"title":"One More Quote",
+			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_OMQ"
 		},
 		{
 			"content_type":"text",
-			"title":"Green",
-			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+			"title":"Unsubscribe",
+			"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_UNSUBSCRIBE"
 		}
 		]
 	}
