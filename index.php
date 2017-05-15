@@ -133,7 +133,7 @@ if($messageText == "Send Me A Quote"){
 		$jsondata = json_decode($response1->raw_body);
 		$answer = '\"' . $jsondata->quote . '\"\nAuthor : ' . $jsondata->author ;
 	}
-	$answer = "Response1 is null";
+	
 }
 	
 
