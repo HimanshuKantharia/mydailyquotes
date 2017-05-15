@@ -60,7 +60,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	} 
 	
 	//$answer = "Hey ".$fname."!";
-
+$subs = "";
 $answer = "I don't understand.Please Ask me 'hi'.";
 
 if(strtolower($messageText) == "hi") {
