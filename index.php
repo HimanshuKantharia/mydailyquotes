@@ -95,7 +95,7 @@ if (strtolower($messageText) == "time") {
  	
 } 
 if(strtolower($messageText) == 'subscribe'){
-	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
+	$query = "UPDATE public.user SET subscribed = 'true' WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
 	    echo "Problem with query " . $query . "<br/>"; 
@@ -107,7 +107,7 @@ if(strtolower($messageText) == 'subscribe'){
 	}
 } 
 if(strtolower($messageText) == 'unsubscribe'){
-	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
+	$query = "UPDATE public.user SET subscribed = 'false' WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
 	    echo "Problem with query " . $query . "<br/>"; 
