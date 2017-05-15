@@ -28,7 +28,7 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
 
 
-$answer = "I don't understand.Please Ask me 'hi'.";
+
 
 $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
 	
@@ -61,6 +61,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	
 	//$answer = "Hey ".$fname."!";
 
+$answer = "I don't understand.Please Ask me 'hi'.";
 
 if(strtolower($messageText) == "hi") {
 
