@@ -187,7 +187,7 @@ $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$acc
 curl_setopt($ch, CURLOPT_POST, 1);
 
 //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
-curl_setopt($ch, CURLOPT_POSTFIELDS, $answer);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
 
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 // Send the request & save response to $resp
