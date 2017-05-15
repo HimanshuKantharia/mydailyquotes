@@ -28,7 +28,7 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
 
 
-// $answer = "I don't understand.Please Ask me 'hi'.";
+$answer = "I don't understand.Please Ask me 'hi'.";
 
 $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
 	
@@ -61,45 +61,26 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	
 	//$answer = "Hey ".$fname."!";
 
-switch(strtolower($messageText)){
-	case "hi":
+
+if(strtolower($messageText) == "hi") {
+
 	$query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
-		echo "Problem with query " . $query . "<br/>"; 
-		echo pg_last_error(); 
-		$answer = "Not found,Please Ask me 'hi'.";
+	    echo "Problem with query " . $query . "<br/>"; 
+	    echo pg_last_error(); 
+	    $answer = "Not found,Please Ask me 'hi'.";
 	} else {
 		$row=pg_fetch_assoc($result);
 		$fname = trim($row['fname']);
 		$lname = trim($row['lname']);
 		$subs = trim($row['subscribed']);
 	}
-	$answer = "Hey ".$fname." ".$lname."! " . $subs;
-	break;
-
-	case default:
-	$answer = "I don't understand.Please Ask me 'hi'.";
-	break;
-
-}
-if(strtolower($messageText) == "hi") {
-
-	// $query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
-	// $result = pg_query($conn,$query);
-	// if (!$result) { 
-	//     echo "Problem with query " . $query . "<br/>"; 
-	//     echo pg_last_error(); 
-	//     $answer = "Not found,Please Ask me 'hi'.";
-	// } else {
-	// 	$row=pg_fetch_assoc($result);
-	// 	$fname = trim($row['fname']);
-	// 	$lname = trim($row['lname']);
-	// 	$subs = trim($row['subscribed']);
-	// }
- //    $answer = "Hey ".$fname." ".$lname."! " . $subs;
+    $answer = "Hey ".$fname." ".$lname."! " . $subs;
  
-} else if (strtolower($messageText) == "time") {
+} 
+
+if (strtolower($messageText) == "time") {
 	$jsondate = file_get_contents("https://script.googleusercontent.com/macros/echo?user_content_key=MwFNcl0KVozlITfkYtONGeBbBrGl1rnO8t0EIrYYKlsSiwzC-Kh2ogcpvBZxRZUJLgumLvhll4Sl-70MQrllKOt4k-Rnhq50m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJ9GRkcRevgjTvo8Dc32iw_BLJPcPfRdVKhJT5HNzQuXEeN3QFwl2n0M6ZmO-h7C6bwVq0tbM60-xcVIW3tKXBXruTRuukcZWQ&lib=MwxUjRcLr2qLlnVOLh12wSNkqcO1Ikdrk");
 	
 	$res = json_decode($jsondate);
@@ -110,7 +91,8 @@ if(strtolower($messageText) == "hi") {
 		$answer = "Time is Not Available...";
 	}
  	
-} else if(strtolower($messageText) == 'subscribe'){
+} 
+if(strtolower($messageText) == 'subscribe'){
 	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
@@ -121,7 +103,8 @@ if(strtolower($messageText) == "hi") {
 		$answer = "Thank you for subscribing..";
 		$subs = "t";
 	}
-} else if(strtolower($messageText) == 'unsubscribe'){
+} 
+if(strtolower($messageText) == 'unsubscribe'){
 	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
@@ -133,7 +116,8 @@ if(strtolower($messageText) == "hi") {
 		$subs = "f";
 	}
 
-} else if($messageText == "Send Me A Quote"){
+} 
+if($messageText == "Send Me A Quote"){
 	// These code snippets use an open-source library.
 		// These code snippets use an open-source library.
 	$response1 = Unirest\Request::post("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=1",
