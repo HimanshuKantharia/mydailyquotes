@@ -113,7 +113,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 		$subs = "f";
 	}
 
-} else if($messageText == "One More Quote"){
+} else if($messageText == "One More Quotee"){
 	// These code snippets use an open-source library.
 		// These code snippets use an open-source library.
 	$response1 = Unirest\Request::post("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=1",
