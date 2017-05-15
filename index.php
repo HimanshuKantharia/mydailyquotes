@@ -128,6 +128,7 @@ else if ($messageText == "Time" || $messageText == "time") {
 		$jsondata = json_decode($response1->raw_body);
 		$answer = '\"' . $jsondata->quote . '\"\nAuthor : ' . $jsondata->author ;
 	}
+	$answer = "Response1 is null";
 }
 	
 
@@ -173,7 +174,7 @@ if($subs == 't'){
 			{
 				"content_type":"text",
 				"title":"Subscribe",
-				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_UNSUBSCRIBE"
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_SUBSCRIBE"
 			}
 			]
 		}
