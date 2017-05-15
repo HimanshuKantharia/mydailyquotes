@@ -163,7 +163,7 @@ if($subs == 't'){
 			]
 		}
 	}';
-}else if($subs == 'f'){
+}else{
 	$response = '{
 		"recipient":{
 			"id":"' . $senderId . '"
