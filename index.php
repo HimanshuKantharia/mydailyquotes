@@ -28,7 +28,7 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 
 
 
-$answer = "I don't understand.Please Ask me 'hi'.";
+// $answer = "I don't understand.Please Ask me 'hi'.";
 
 $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
 	
@@ -76,6 +76,10 @@ switch(strtolower($messageText)){
 		$subs = trim($row['subscribed']);
 	}
 	$answer = "Hey ".$fname." ".$lname."! " . $subs;
+	break;
+
+	case default:
+	$answer = "I don't understand.Please Ask me 'hi'.";
 	break;
 
 }
