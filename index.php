@@ -78,7 +78,7 @@ $query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
 
 if(strtolower($messageText) == "hi") {
 
-    $answer = "Hey ".$fname." ".$lname."! " . $subs;
+    $answer = "Hey ".$fname." ".$lname."! ";
  
 } 
 
