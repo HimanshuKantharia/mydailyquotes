@@ -61,14 +61,14 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	
 	//$answer = "Hey ".$fname."!";
 
-$answer = "I don't understand.Please Ask me 'hi'.";
+$answer = "I didn't understand that. Please Ask me 'hi'.";
 
-$query = "SELECT * FROM public.user WHERE id= $senderId";
+$query = "SELECT * FROM public.user WHERE id = $senderId";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
 	    echo "\nProblem with query " . $query . "<br/>"; 
-	    echo pg_last_error(); 
-	    $answer = "Not found,Please Ask me 'hi'.";
+	    echo pg_result_error($result); 
+	    $answer = "Not found, Please Ask me 'hi'.";
 	} else {
 		$row=pg_fetch_assoc($result);
 		$fname = trim($row['fname']);
