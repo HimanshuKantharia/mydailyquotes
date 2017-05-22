@@ -63,7 +63,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 
 $answer = "I don't understand.Please Ask me 'hi'.";
 
-$query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
+$query = "SELECT * FROM public.user WHERE id= '$senderId'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
 	    echo "Problem with query " . $query . "<br/>"; 
@@ -76,7 +76,7 @@ $query = "SELECT * FROM public.user WHERE id= '".$senderId."'";
 		$subs = trim($row['subscribed']);
 	}
 
-if(strtolower($messageText) == "hi") {
+if(strtolower($messageText) == "hi" || strtolower($messageText) == 'yo') {
 
     $answer = "Hey ".$fname." ".$lname."! ";
  
