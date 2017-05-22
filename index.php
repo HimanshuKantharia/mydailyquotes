@@ -63,10 +63,10 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 
 $answer = "I don't understand.Please Ask me 'hi'.";
 
-$query = "SELECT * FROM public.user WHERE id= '$senderId'";
+$query = "SELECT * FROM public.user WHERE id= $senderId";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
-	    echo "Problem with query " . $query . "<br/>"; 
+	    echo "\nProblem with query " . $query . "<br/>"; 
 	    echo pg_last_error(); 
 	    $answer = "Not found,Please Ask me 'hi'.";
 	} else {
