@@ -28,7 +28,8 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 $messageText = trim($messageText);
 $messageText = strtolower($messageText);
 
-
+$fbflag = false;
+$bflag = false;
 
 $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
 	
@@ -137,7 +138,7 @@ else if($messageText == "send me a quote"){
 		$answer = '\"' . $jsondata->quote . '\"\nAuthor : ' . $jsondata->author ;
 	}	
 }
-$bflag = false;
+
 else if(substr_compare($messageText, "broadcast", 0, 9) == 0  && $senderId == 1473360329360719){
 	$splitmessage = explode("\"", $messageText);
 	$banswer = $splitmessage[1];
@@ -171,7 +172,7 @@ else if(substr_compare($messageText, "broadcast", 0, 9) == 0  && $senderId == 14
 
 	}
 }
-$fbflag = false;
+
 else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId == 1473360329360719){
 	$splitmessage = explode("\"", $messageText);
 	$banswer = $splitmessage[1];
