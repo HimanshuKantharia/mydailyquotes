@@ -140,7 +140,7 @@ else if($messageText == "send me a quote"){
 
 else if(substr_compare($messageText, "broadcast", 0, 9) == 0){
 	$splitmessage = explode("\"", $messageText);
-	$answer = $splitmessage[0];
+	$answer = $splitmessage[1];
 }
 	
 
