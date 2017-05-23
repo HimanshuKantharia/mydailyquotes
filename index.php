@@ -66,7 +66,7 @@ $answer = "I didn't understand that. Please Ask me 'hi'.";
 $query = "SELECT * FROM public.user WHERE id = '" . $senderId . "'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
-	    echo "\nProblem with query " . $query . "<br/>"; 
+	    echo "<br/>Problem with query " . $query . "<br/>"; 
 	    echo pg_result_error($result); 
 	    $answer = "Not found, Please Ask me 'hi'.";
 	} else {
