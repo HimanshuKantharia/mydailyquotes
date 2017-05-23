@@ -137,9 +137,9 @@ if($messageText == "Send Me A Quote"){
 		$answer = '\"' . $jsondata->quote . '\"\nAuthor : ' . $jsondata->author ;
 	}	
 }
-if(substr(strtolower(trim($messageText)), 0, 9) == "broadcast"){
-	$answer = "Broadcast message";
-}
+// if(substr(strtolower(trim($messageText)), 0, 9) == "broadcast"){
+// 	$answer = "Broadcast message";
+// }
 	
 
 	// $response = [
@@ -165,6 +165,22 @@ if($subs == 'f'){
 				"content_type":"text",
 				"title":"Subscribe",
 				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_SUBSCRIBE"
+			}
+			]
+		}
+	}';
+}else{
+	$response = '{
+		"recipient":{
+			"id":"' . $senderId . '"
+		}, 
+		"message":{
+			"text":"' . $answer . '",
+			"quick_replies":[
+			{
+				"content_type":"text",
+				"title":"Send Me A Quote",
+				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_OMQ"
 			}
 			]
 		}
