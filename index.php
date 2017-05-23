@@ -28,8 +28,6 @@ $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
 $messageText = trim($messageText);
 $messageText = strtolower($messageText);
 
-$fbflag = false;
-$bflag = false;
 
 $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_name,gender&access_token=".$accessToken;
 	
@@ -148,7 +146,7 @@ else if(substr_compare($messageText, "broadcast", 0, 9) == 0  && $senderId == 14
 	if (!$result) { 
 	    $answer = "Not found, Please Ask me 'hi'.";
 	} else {
-		$bflag = true;
+		$answer = "Broadcast Succesfull!";
 		while($row = pg_fetch_assoc($result)){
 			$bid = trim($row['id']);
 			$bresponse = '{
@@ -182,7 +180,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 	if (!$result) { 
 	    $answer = "Not found, Please Ask me 'hi'.";
 	} else {
-		$fbflag = true;
+		$answer = "Forced Broadcast Succesfull!";
 		while($row = pg_fetch_assoc($result)){
 			$bid = trim($row['id']);
 			$bresponse = '{
@@ -214,8 +212,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
  //    'recipient' => [ 'id' => $senderId ],
  //    'message' => [ 'text' => $answer]
 	// ];
-if(bflag) $answer = "Broadcasted Succesfully!";
-if(fbflag) $answer = "Forced Broadcasted Succesfully!";
+
 
 if($subs == 'f'){
 	$response = '{
