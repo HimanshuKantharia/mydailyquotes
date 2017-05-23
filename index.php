@@ -19,6 +19,24 @@ if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
 //$senderId = "1473360329360719"; himan
 //$senderId = "1515521005145148"; yash
 
+function sendReply($response){
+	$ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
+// Set some options - we are passing in a useragent too here
+	curl_setopt($ch, CURLOPT_POST, 1);
+
+//curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
+
+	curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+// Send the request & save response to $resp
+	if(!empty($messageText)){
+		curl_exec($ch);
+	}
+// Close request to clear up some resources
+	curl_close($ch);
+}
+
+
 echo ("This is a Facebook massenger page ChatBOT: MyDailyQuotes");
 // handle bot's anwser
 $input = json_decode(file_get_contents('php://input'), true);
@@ -189,23 +207,11 @@ if($subs == 'f'){
 	}';
 }
 
-sendReply($response);
-
-
-function sendReply($response){
-	$ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
-// Set some options - we are passing in a useragent too here
-	curl_setopt($ch, CURLOPT_POST, 1);
-
-//curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
-
-	curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-// Send the request & save response to $resp
-	if(!empty($messageText)){
-		curl_exec($ch);
-	}
-// Close request to clear up some resources
-	curl_close($ch);
+if(!empty($messageText)){
+	sendReply($response);
 }
+
+
+
+
 
