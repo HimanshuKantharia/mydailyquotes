@@ -147,6 +147,7 @@ else if(substr_compare($messageText, "broadcast", 0, 9) == 0){
 	if (!$result) { 
 	    $answer = "Not found, Please Ask me 'hi'.";
 	} else {
+		$bflag = true;
 		while($row = pg_fetch_assoc($result)){
 			$bid = trim($row['id']);
 			$bresponse = '{
@@ -176,7 +177,7 @@ else if(substr_compare($messageText, "broadcast", 0, 9) == 0){
  //    'recipient' => [ 'id' => $senderId ],
  //    'message' => [ 'text' => $answer]
 	// ];
-
+if(bflag) $answer = "Broadcasted Succesfully!";
 
 if($subs == 'f'){
 	$response = '{
