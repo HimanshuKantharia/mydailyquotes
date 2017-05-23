@@ -107,7 +107,7 @@ else if($messageText == 'subscribe'){
 		$subs = "t";
 	}
 } 
-if($messageText == 'unsubscribe'){
+else if($messageText == 'unsubscribe'){
 	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
@@ -203,8 +203,6 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 		}
 
 	}
-}else{
-	$answer = "I didn't understand that. Please Ask me 'hi' or 'time' or select a quick reply.";
 }
 		
 
