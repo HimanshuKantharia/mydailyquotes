@@ -138,7 +138,7 @@ else if($messageText == "send me a quote"){
 	}	
 }
 
-else if(substr_compare($messageText, "broadcast", 0, 9) ){
+else if(substr_compare($messageText, "broadcast", 0, 9) == 0){
 	$answer = "Broadcast message";
 }
 	
