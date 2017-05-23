@@ -25,8 +25,8 @@ $input = json_decode(file_get_contents('php://input'), true);
 
 $senderId = $input['entry'][0]['messaging'][0]['sender']['id'];
 $messageText = $input['entry'][0]['messaging'][0]['message']['text'];
-
-
+$messageText = trim($messageText);
+$messageText = strtolower($messageText);
 
 
 
@@ -78,13 +78,13 @@ $query = 'SELECT * FROM public."user" WHERE id = \''.$senderId.'\'';
 		$subs = trim($row['subscribed']);
 	}
 
-if(strtolower($messageText) == "hi" || strtolower($messageText) == 'yo') {
+if($messageText == "hi" || $messageText == 'yo') {
 
     $answer = "Hey ".$fname." ".$lname."! ";
  
 } 
 
-if (strtolower($messageText) == "time") {
+else if ($messageText == "time") {
 	$jsondate = file_get_contents("https://script.googleusercontent.com/macros/echo?user_content_key=MwFNcl0KVozlITfkYtONGeBbBrGl1rnO8t0EIrYYKlsSiwzC-Kh2ogcpvBZxRZUJLgumLvhll4Sl-70MQrllKOt4k-Rnhq50m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJ9GRkcRevgjTvo8Dc32iw_BLJPcPfRdVKhJT5HNzQuXEeN3QFwl2n0M6ZmO-h7C6bwVq0tbM60-xcVIW3tKXBXruTRuukcZWQ&lib=MwxUjRcLr2qLlnVOLh12wSNkqcO1Ikdrk");
 	
 	$res = json_decode($jsondate);
@@ -96,7 +96,7 @@ if (strtolower($messageText) == "time") {
 	}
  	
 } 
-if(strtolower($messageText) == 'subscribe'){
+else if($messageText == 'subscribe'){
 	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
@@ -108,7 +108,7 @@ if(strtolower($messageText) == 'subscribe'){
 		$subs = "t";
 	}
 } 
-if(strtolower($messageText) == 'unsubscribe'){
+if($messageText == 'unsubscribe'){
 	$query = "UPDATE public.user SET subscribed = NOT subscribed WHERE id= '".$senderId."'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
@@ -121,7 +121,7 @@ if(strtolower($messageText) == 'unsubscribe'){
 	}
 
 } 
-if($messageText == "Send Me A Quote"){
+else if($messageText == "send me a quote"){
 	// These code snippets use an open-source library.
 		// These code snippets use an open-source library.
 	$response1 = Unirest\Request::post("https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=1",
@@ -137,9 +137,10 @@ if($messageText == "Send Me A Quote"){
 		$answer = '\"' . $jsondata->quote . '\"\nAuthor : ' . $jsondata->author ;
 	}	
 }
-// if(substr(strtolower(trim($messageText)), 0, 9) == "broadcast"){
-// 	$answer = "Broadcast message";
-// }
+
+else if(substr_compare($messageText, "broadcast", 0, 9) ){
+	$answer = "Broadcast message";
+}
 	
 
 	// $response = [
