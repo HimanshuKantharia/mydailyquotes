@@ -61,7 +61,10 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	
 	//$answer = "Hey ".$fname."!";
 
-$answer = "I didn't understand that. Please Ask me 'hi'.";
+
+
+
+$answer = "I didn't understand that. Please Ask me 'hi' or 'time' or select a quick reply.";
 
 $query = 'SELECT * FROM public."user" WHERE id = \''.$senderId.'\'';
 	$result = pg_query($conn,$query);
@@ -132,8 +135,10 @@ if($messageText == "Send Me A Quote"){
 	if(!empty($response1)){
 		$jsondata = json_decode($response1->raw_body);
 		$answer = '\"' . $jsondata->quote . '\"\nAuthor : ' . $jsondata->author ;
-	}
-	
+	}	
+}
+if(substr(strtolower(trim($messageText)), 0, 9) == "broadcast"){
+	$answer = "Broadcast message";
 }
 	
 
@@ -142,28 +147,8 @@ if($messageText == "Send Me A Quote"){
  //    'message' => [ 'text' => $answer]
 	// ];
 
-if($subs == 't'){
-	$response = '{
-		"recipient":{
-			"id":"' . $senderId . '"
-		}, 
-		"message":{
-			"text":"' . $answer . '",
-			"quick_replies":[
-			{
-				"content_type":"text",
-				"title":"Send Me A Quote",
-				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_OMQ"
-			},
-			{
-				"content_type":"text",
-				"title":"Unsubscribe",
-				"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_UNSUBSCRIBE"
-			}
-			]
-		}
-	}';
-}else{
+
+if($subs == 'f'){
 	$response = '{
 		"recipient":{
 			"id":"' . $senderId . '"
