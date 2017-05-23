@@ -19,24 +19,6 @@ if ($_REQUEST['hub_verify_token'] === $hubVerifyToken) {
 //$senderId = "1473360329360719"; himan
 //$senderId = "1515521005145148"; yash
 
-function sendReply($response){
-	$ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
-// Set some options - we are passing in a useragent too here
-	curl_setopt($ch, CURLOPT_POST, 1);
-
-//curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
-
-	curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-// Send the request & save response to $resp
-	if(!empty($messageText)){
-		curl_exec($ch);
-	}
-// Close request to clear up some resources
-	curl_close($ch);
-}
-
-
 echo ("This is a Facebook massenger page ChatBOT: MyDailyQuotes");
 // handle bot's anwser
 $input = json_decode(file_get_contents('php://input'), true);
@@ -158,7 +140,35 @@ else if($messageText == "send me a quote"){
 
 else if(substr_compare($messageText, "broadcast", 0, 9) == 0){
 	$splitmessage = explode("\"", $messageText);
-	$answer = $splitmessage[1];
+	$banswer = $splitmessage[1];
+
+	$query = "SELECT * from public.user WHERE subscribed = 'true'";
+	$result = pg_query($conn,$query);
+	if (!$result) { 
+	    $answer = "Not found, Please Ask me 'hi'.";
+	} else {
+		while($row = pg_fetch_assoc($result)){
+			$bid = trim($row['id']);
+			$bresponse = '{
+				"recipient":{
+					"id":"'.$bid.'"
+				},
+				"message":{
+					"text":"'.$banswer.'"
+				}
+			}';
+
+				$bch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
+				curl_setopt($bch, CURLOPT_POST, 1);
+				curl_setopt($bch, CURLOPT_POSTFIELDS, $bresponse);
+				curl_setopt($bch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+				if(!empty($messageText)){
+					curl_exec($bch);
+				}
+				curl_close($bch);
+		}
+
+	}
 }
 	
 
@@ -207,11 +217,18 @@ if($subs == 'f'){
 	}';
 }
 
+
+$ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
+// Set some options - we are passing in a useragent too here
+curl_setopt($ch, CURLOPT_POST, 1);
+
+//curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
+curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+// Send the request & save response to $resp
 if(!empty($messageText)){
-	sendReply($response);
+	curl_exec($ch);
 }
-
-
-
-
-
+// Close request to clear up some resources
+curl_close($ch);
