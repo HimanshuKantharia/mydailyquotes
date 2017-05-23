@@ -138,7 +138,7 @@ else if($messageText == "send me a quote"){
 	}	
 }
 
-else if(substr_compare($messageText, "broadcast", 0, 9) == 0){
+else if(substr_compare($messageText, "broadcast", 0, 9) == 0  && $senderId == 1473360329360719){
 	$splitmessage = explode("\"", $messageText);
 	$banswer = $splitmessage[1];
 
@@ -171,13 +171,48 @@ else if(substr_compare($messageText, "broadcast", 0, 9) == 0){
 
 	}
 }
-	
+
+else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId == 1473360329360719){
+	$splitmessage = explode("\"", $messageText);
+	$banswer = $splitmessage[1];
+
+	$query = "SELECT * from public.user";
+	$result = pg_query($conn,$query);
+	if (!$result) { 
+	    $answer = "Not found, Please Ask me 'hi'.";
+	} else {
+		$fbflag = true;
+		while($row = pg_fetch_assoc($result)){
+			$bid = trim($row['id']);
+			$bresponse = '{
+				"recipient":{
+					"id":"'.$bid.'"
+				},
+				"message":{
+					"text":"'.$banswer.'"
+				}
+			}';
+
+				$bch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
+				curl_setopt($bch, CURLOPT_POST, 1);
+				curl_setopt($bch, CURLOPT_POSTFIELDS, $bresponse);
+				curl_setopt($bch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+				if(!empty($messageText)){
+					curl_exec($bch);
+				}
+				curl_close($bch);
+		}
+
+	}
+}
+		
 
 	// $response = [
  //    'recipient' => [ 'id' => $senderId ],
  //    'message' => [ 'text' => $answer]
 	// ];
 if(bflag) $answer = "Broadcasted Succesfully!";
+if(fbflag) $answer = "Forced Broadcasted Succesfully!";
 
 if($subs == 'f'){
 	$response = '{
