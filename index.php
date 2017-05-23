@@ -137,11 +137,11 @@ else if($messageText == "send me a quote"){
 		$answer = '\"' . $jsondata->quote . '\"\nAuthor : ' . $jsondata->author ;
 	}	
 }
-
+$bflag = false;
 else if(substr_compare($messageText, "broadcast", 0, 9) == 0  && $senderId == 1473360329360719){
 	$splitmessage = explode("\"", $messageText);
 	$banswer = $splitmessage[1];
-	$bflag = false;
+	
 	$query = "SELECT * from public.user WHERE subscribed = 'true'";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
@@ -171,11 +171,11 @@ else if(substr_compare($messageText, "broadcast", 0, 9) == 0  && $senderId == 14
 
 	}
 }
-
+$fbflag = false;
 else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId == 1473360329360719){
 	$splitmessage = explode("\"", $messageText);
 	$banswer = $splitmessage[1];
-	$fbflag = false;
+	
 	$query = "SELECT * from public.user";
 	$result = pg_query($conn,$query);
 	if (!$result) { 
