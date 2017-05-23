@@ -63,7 +63,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 
 $answer = "I didn't understand that. Please Ask me 'hi'.";
 
-$query = "SELECT * FROM public.user WHERE id = '" . $senderId . "'";
+$query = 'SELECT * FROM public."user" WHERE id = $senderId';
 	$result = pg_query($conn,$query);
 	if (!$result) { 
 	    echo "<br/>Problem with query " . $query . "<br/>"; 
