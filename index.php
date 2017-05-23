@@ -189,18 +189,23 @@ if($subs == 'f'){
 	}';
 }
 
+sendReply($response);
 
-$ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
+
+function sendReply($response){
+	$ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 // Set some options - we are passing in a useragent too here
-curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POST, 1);
 
 //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
-curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $response);
 
-curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 // Send the request & save response to $resp
-if(!empty($messageText)){
-	curl_exec($ch);
-}
+	if(!empty($messageText)){
+		curl_exec($ch);
+	}
 // Close request to clear up some resources
-curl_close($ch);
+	curl_close($ch);
+}
+
