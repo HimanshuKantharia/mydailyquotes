@@ -63,23 +63,23 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	
 	//$answer = "Hey ".$fname."!";
 
-// try {
-// 		$client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
-// 		$queryApi = new QueryApi($client);
+try {
+		$client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
+		$queryApi = new QueryApi($client);
 
-// 		$meaning = $queryApi->extractMeaning('Hello', [
-// 			'sessionId' => '1234567890',
-// 			'lang' => 'en',
-// 			]);
-// 		$res = new Query($meaning);
-// 		$res = $res->result->fulfillment>messages[1]->speech;
-// 		//$res = $res->lang;
-// 		echo "result : ";
-// 		print_r($res);
-// 	} catch (\Exception $error) {
-// 		echo $error->getMessage();
+		$meaning = $queryApi->extractMeaning('Hello', [
+			'sessionId' => '1234567890',
+			'lang' => 'en',
+			]);
+		$res = new Query($meaning);
+		$res = $res->result->fulfillment>messages[1]->speech;
+		//$res = $res->lang;
+		echo "result : ";
+		print_r($res);
+	} catch (\Exception $error) {
+		echo $error->getMessage();
 		
-// 	}
+	}
 
 
 $answer = "I didn't understand that. Please Ask me 'hi' or 'time' or select a quick reply.";
