@@ -63,21 +63,21 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	
 	//$answer = "Hey ".$fname."!";
 
-// try {
-// 		$client = new Client('00355556bf8045e7aebe2041350a4d51');
-// 		$queryApi = new QueryApi($client);
+try {
+		$client = new Client('00355556bf8045e7aebe2041350a4d51');
+		$queryApi = new QueryApi($client);
 
-// 		$meaning = $queryApi->extractMeaning('Hello', [
-// 			'sessionId' => '1234567890',
-// 			'lang' => 'en',
-// 			]);
-// 		$res = new Query($meaning);
-// 		$res = $res['result']['fulfillment']['messages']['speech'];
-// 		print_r("res : " . $res);
-// 	} catch (\Exception $error) {
-// 		echo $error->getMessage();
+		$meaning = $queryApi->extractMeaning('Hello', [
+			'sessionId' => '1234567890',
+			'lang' => 'en',
+			]);
+		$res = new Query($meaning);
+		$res = $res['result']['fulfillment']['messages'][0]['speech'];
+		print_r("res : " . $res);
+	} catch (\Exception $error) {
+		echo $error->getMessage();
 		
-// 	}
+	}
 
 
 $answer = "I didn't understand that. Please Ask me 'hi' or 'time' or select a quick reply.";
@@ -222,20 +222,21 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 
 	}
 }else{
-	// $answer = "else";
-	// try {
-	// 	$client = new Client('00355556bf8045e7aebe2041350a4d51');
-	// 	$queryApi = new QueryApi($client);
+	$answer = "else";
+	try {
+		$client = new Client('00355556bf8045e7aebe2041350a4d51');
+		$queryApi = new QueryApi($client);
 
-	// 	$meaning = $queryApi->extractMeaning('Hello', [
-	// 		'sessionId' => '1234567890',
-	// 		'lang' => 'en',
-	// 		]);
-	// 	$answer = new Query($meaning);
-	// } catch (\Exception $error) {
-	// 	echo $error->getMessage();
-	// 	$answer = "Api.ai error";
-	// }
+		$meaning = $queryApi->extractMeaning('Hello', [
+			'sessionId' => '1234567890',
+			'lang' => 'en',
+			]);
+		$res= new Query($meaning);
+		$answer = $res['result']['fulfillment']['messages'][0]['speech'];
+	} catch (\Exception $error) {
+		echo $error->getMessage();
+		$answer = "Api.ai error";
+	}
 
 }
 		
