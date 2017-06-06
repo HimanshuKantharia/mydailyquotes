@@ -91,7 +91,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
     $response = json_decode((string) $query->getBody(), true);
     print_r($response);
 } catch (\Exception $error) {
-    echo $error->getMessage();
+    print_r($error->getMessage());
 }
 
 
