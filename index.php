@@ -2,6 +2,8 @@
 require('vendor/autoload.php');
 
 use ApiAi\Client;
+use ApiAi\Model\Query;
+use ApiAi\Method\QueryApi;
 //$hubVerifyToken = 'TOKEN123456abcd';
 // $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJIewMxpd5O4E5pTIPhWiYQVMEF3qOZA41Ru7BtRZCdnkMtnUiSViJZAJ1wIXF30EOLFCmwyewLiP9iGTZCMBrl4MZBZAToGMk7cvlQQ4IkqvVWVwZDZD";
 
@@ -207,15 +209,16 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 	}
 }else{
 	try {
-		$client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
+		$client = new Client('00355556bf8045e7aebe2041350a4d51');
+		$queryApi = new QueryApi($client);
 
-		$query = $client->get('query', [
-			'query' => 'Hello',
+		$meaning = $queryApi->extractMeaning('Hello', [
+			'sessionId' => '1234567890',
+			'lang' => 'en',
 			]);
-
-		$answer = json_decode((string) $query->getBody(), true);
+		$response = new Query($meaning);
 	} catch (\Exception $error) {
-		print_r( "\n" . $error->getMessage());
+		echo $error->getMessage();
 	}
 }
 		
