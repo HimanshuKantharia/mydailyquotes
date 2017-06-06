@@ -63,23 +63,23 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	
 	//$answer = "Hey ".$fname."!";
 
-try {
-		$client = new Client('00355556bf8045e7aebe2041350a4d51');
-		$queryApi = new QueryApi($client);
+// try {
+// 		$client = new Client('00355556bf8045e7aebe2041350a4d51');
+// 		$queryApi = new QueryApi($client);
 
-		$meaning = $queryApi->extractMeaning('Hello', [
-			'sessionId' => '1234567890',
-			'lang' => 'en',
-			]);
-		$res = new Query($meaning);
-		$res = $res->result->fulfillment>messages[1]->speech;
-		//$res = $res->lang;
-		echo "result : ";
-		print_r($res);
-	} catch (\Exception $error) {
-		echo $error->getMessage();
+// 		$meaning = $queryApi->extractMeaning('Hello', [
+// 			'sessionId' => '1234567890',
+// 			'lang' => 'en',
+// 			]);
+// 		$res = new Query($meaning);
+// 		$res = $res->result->fulfillment>messages[1]->speech;
+// 		//$res = $res->lang;
+// 		echo "result : ";
+// 		print_r($res);
+// 	} catch (\Exception $error) {
+// 		echo $error->getMessage();
 		
-	}
+// 	}
 
 
 $answer = "I didn't understand that. Please Ask me 'hi' or 'time' or select a quick reply.";
@@ -159,24 +159,26 @@ else if($messageText == "send me a quote"){
 
 else if(substr_compare($messageText, "broadcast", 0, 9) == 0  && $senderId == 1473360329360719){
 	$splitmessage = explode("\"", $messageText);
-	$banswer = $splitmessage[1];
-	
-	$query = "SELECT * from public.user WHERE subscribed = 'true'";
-	$result = pg_query($conn,$query);
-	if (!$result) { 
-	    $answer = "Not found, Please Ask me 'hi'.";
-	} else {
-		$answer = "Broadcast Succesfull!";
-		while($row = pg_fetch_assoc($result)){
-			$bid = trim($row['id']);
-			$bresponse = '{
-				"recipient":{
-					"id":"'.$bid.'"
-				},
-				"message":{
-					"text":"'.$banswer.'"
-				}
-			}';
+
+	if(!empty($splitmessage)){
+		$banswer = $splitmessage[1];
+
+		$query = "SELECT * from public.user WHERE subscribed = 'true'";
+		$result = pg_query($conn,$query);
+		if (!$result) { 
+			$answer = "Not found, Please Ask me 'hi'.";
+		} else {
+			$answer = "Broadcast Succesfull!";
+			while($row = pg_fetch_assoc($result)){
+				$bid = trim($row['id']);
+				$bresponse = '{
+					"recipient":{
+						"id":"'.$bid.'"
+					},
+					"message":{
+						"text":"'.$banswer.'"
+					}
+				}';
 
 				$bch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 				curl_setopt($bch, CURLOPT_POST, 1);
@@ -186,31 +188,37 @@ else if(substr_compare($messageText, "broadcast", 0, 9) == 0  && $senderId == 14
 					curl_exec($bch);
 				}
 				curl_close($bch);
-		}
+			}
 
+		}
+	}else{
+		$answer = "Hint : broadcast \" \"";
 	}
 }
 
 else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId == 1473360329360719){
 	$splitmessage = explode("\"", $messageText);
-	$banswer = $splitmessage[1];
-	
-	$query = "SELECT * from public.user";
-	$result = pg_query($conn,$query);
-	if (!$result) { 
-	    $answer = "Not found, Please Ask me 'hi'.";
-	} else {
-		$answer = "Forced Broadcast Succesfull!";
-		while($row = pg_fetch_assoc($result)){
-			$bid = trim($row['id']);
-			$bresponse = '{
-				"recipient":{
-					"id":"'.$bid.'"
-				},
-				"message":{
-					"text":"'.$banswer.'"
-				}
-			}';
+
+	if(!empty($splitmessage)){
+
+		$banswer = $splitmessage[1];
+
+		$query = "SELECT * from public.user";
+		$result = pg_query($conn,$query);
+		if (!$result) { 
+			$answer = "Not found, Please Ask me 'hi'.";
+		} else {
+			$answer = "Forced Broadcast Succesfull!";
+			while($row = pg_fetch_assoc($result)){
+				$bid = trim($row['id']);
+				$bresponse = '{
+					"recipient":{
+						"id":"'.$bid.'"
+					},
+					"message":{
+						"text":"'.$banswer.'"
+					}
+				}';
 
 				$bch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
 				curl_setopt($bch, CURLOPT_POST, 1);
@@ -220,8 +228,11 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 					curl_exec($bch);
 				}
 				curl_close($bch);
+			}
 		}
 
+	}else{
+		$answer = "Hint : forcebroadcast \" \"";
 	}
 }else{
 	$answer = "else";
@@ -237,7 +248,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 		$answer = $res->result->fulfillment>messages[1]->speech;
 	} catch (\Exception $error) {
 		echo $error->getMessage();
-		$answer = "Api.ai error";
+		$answer = $error->getMessage();
 	}
 
 }
