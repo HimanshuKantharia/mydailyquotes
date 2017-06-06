@@ -207,7 +207,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 	}
 }else{
 	try {
-		$client = new Client('00355556bf8045e7aebe2041350a4d51');
+		$client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
 
 		$query = $client->get('query', [
 			'query' => 'Hello',
@@ -215,7 +215,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 
 		$answer = json_decode((string) $query->getBody(), true);
 	} catch (\Exception $error) {
-		echo $error->getMessage();
+		print_r( "\n" . $error->getMessage());
 	}
 }
 		
