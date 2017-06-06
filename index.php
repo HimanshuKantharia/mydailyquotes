@@ -234,7 +234,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 			'lang' => 'en',
 			]);
 		$res= new Query($meaning);
-		$answer = $res['result']['fulfillment']['messages'][0]['speech'];
+		$answer = $res->result->fulfillment>messages[1]->speech;
 	} catch (\Exception $error) {
 		echo $error->getMessage();
 		$answer = "Api.ai error";
