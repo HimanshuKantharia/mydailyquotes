@@ -64,7 +64,7 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	//$answer = "Hey ".$fname."!";
 
 // try {
-// 		$client = new Client('00355556bf8045e7aebe2041350a4d51');
+// 		$client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
 // 		$queryApi = new QueryApi($client);
 
 // 		$meaning = $queryApi->extractMeaning('Hello', [
@@ -237,7 +237,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 }else{
 	$answer = "else";
 	try {
-		$client = new Client('00355556bf8045e7aebe2041350a4d51');
+		$client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
 		$queryApi = new QueryApi($client);
 
 		$meaning = $queryApi->extractMeaning('$messageText', [
