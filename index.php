@@ -208,6 +208,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 
 	}
 }else{
+	$answer = "else";
 	try {
 		$client = new Client('00355556bf8045e7aebe2041350a4d51');
 		$queryApi = new QueryApi($client);
@@ -219,7 +220,9 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 		$answer = new Query($meaning);
 	} catch (\Exception $error) {
 		echo $error->getMessage();
+		$answer = "Api.ai error";
 	}
+
 }
 		
 
