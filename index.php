@@ -73,7 +73,7 @@ try {
 			]);
 		$res = new Query($meaning);
 		//$res = $res['result']['fulfillment']['messages'][1]['speech'];
-		$res = $res['lang'];
+		//$res = $res['lang'];
 		echo "result : ";
 		print_r($res);
 	} catch (\Exception $error) {
