@@ -72,7 +72,7 @@ try {
 			'lang' => 'en',
 			]);
 		$res = new Query($meaning);
-		$res = $res['result']['fulfillment']['messages'][1]['speech'];
+		//$res = $res['result']['fulfillment']['messages'][1]['speech'];
 		echo "result : ";
 		print_r($res);
 	} catch (\Exception $error) {
