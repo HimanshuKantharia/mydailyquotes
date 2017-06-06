@@ -1,6 +1,7 @@
 <?php
 require('vendor/autoload.php');
 
+use ApiAi\Client;
 //$hubVerifyToken = 'TOKEN123456abcd';
 // $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJIewMxpd5O4E5pTIPhWiYQVMEF3qOZA41Ru7BtRZCdnkMtnUiSViJZAJ1wIXF30EOLFCmwyewLiP9iGTZCMBrl4MZBZAToGMk7cvlQQ4IkqvVWVwZDZD";
 
@@ -76,6 +77,7 @@ $query = 'SELECT * FROM public."user" WHERE id = \''.$senderId.'\'';
 		$lname = trim($row['lname']);
 		$subs = trim($row['subscribed']);
 	}
+
 
 if($messageText == "hi" || $messageText == 'yo') {
 
@@ -203,6 +205,18 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 		}
 
 	}
+}else{
+	try {
+		$client = new Client('00355556bf8045e7aebe2041350a4d51');
+
+		$query = $client->get('query', [
+			'query' => 'Hello',
+			]);
+
+		$answer = json_decode((string) $query->getBody(), true);
+	} catch (\Exception $error) {
+		echo $error->getMessage();
+	}
 }
 		
 
@@ -210,6 +224,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
  //    'recipient' => [ 'id' => $senderId ],
  //    'message' => [ 'text' => $answer]
 	// ];
+
 
 
 if($subs == 'f'){
@@ -250,6 +265,7 @@ if($subs == 'f'){
 		}
 	}';
 }
+
 
 
 $ch = curl_init('https://graph.facebook.com/v2.6/me/messages?access_token='.$accessToken);
