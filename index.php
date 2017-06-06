@@ -216,7 +216,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 			'sessionId' => '1234567890',
 			'lang' => 'en',
 			]);
-		$response = new Query($meaning);
+		$answer = new Query($meaning);
 	} catch (\Exception $error) {
 		echo $error->getMessage();
 	}
