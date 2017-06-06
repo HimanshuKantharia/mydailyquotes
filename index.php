@@ -1,9 +1,11 @@
 <?php
 require('vendor/autoload.php');
 
-use ApiAi\Client;
-use ApiAi\Model\Query;
-use ApiAi\Method\QueryApi;
+use GuzzleHttp\Client;
+
+// use ApiAi\Client;
+// use ApiAi\Model\Query;
+// use ApiAi\Method\QueryApi;
 //$hubVerifyToken = 'TOKEN123456abcd';
 // $accessToken = "EAAYGq9HiIM0BAGipJ83wsWWZBdIETtaEmtDyY81qbI2H7QLj90Ah0Ng2feUidJIewMxpd5O4E5pTIPhWiYQVMEF3qOZA41Ru7BtRZCdnkMtnUiSViJZAJ1wIXF30EOLFCmwyewLiP9iGTZCMBrl4MZBZAToGMk7cvlQQ4IkqvVWVwZDZD";
 
@@ -81,19 +83,37 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 		
 // 	}
 
-	try {
-    $client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
+// 	try {
+//     $client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
 
-    $query = $client->get('query', [
-        'query' => 'Hello',
-    ]);
+//     $query = $client->get('query', [
+//         'query' => 'Hello',
+//     ]);
 
-    $response = json_decode((string) $query->getBody(), true);
-    print_r($response);
-} catch (\Exception $error) {
-    print_r($error->getMessage());
-}
+//     $response = json_decode((string) $query->getBody(), true);
+//     print_r($response);
+// } catch (\Exception $error) {
+//     print_r($error->getMessage());
+// }
 
+$apiai_key = '00355556bf8045e7aebe2041350a4d51';
+    $apiai_subscription_key = '5c8e46115c424da79a9c3d96f1f897a1';
+    
+    $query = 'hello';
+    
+    $client = new Client();
+    $send = ['headers' => [
+                'Content-Type' => 'application/json;charset=utf-8', 
+                'Authorization' => 'Bearer '.$apiai_key
+                ],
+            'body' => json_encode([                
+                'query' => $query, 
+                'lang' => 'en',
+                ])
+            ];  
+    $response = $client->post('https://api.api.ai/v1/query?v=20150910', $send);
+    $res = json_decode($response->getBody(),true);
+    print_r($res);
 
 $answer = "I didn't understand that. Please Ask me 'hi' or 'time' or select a quick reply.";
 
