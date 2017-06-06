@@ -72,7 +72,7 @@ try {
 			'lang' => 'en',
 			]);
 		$res = new Query($meaning);
-		$res = json_decode($res);
+		$res = $res['result']['fulfillment']['messages']['speech'];
 		print_r($res);
 	} catch (\Exception $error) {
 		echo $error->getMessage();
