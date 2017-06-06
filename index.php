@@ -240,8 +240,8 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 		$client = new Client('00355556bf8045e7aebe2041350a4d51');
 		$queryApi = new QueryApi($client);
 
-		$meaning = $queryApi->extractMeaning('Hello', [
-			'sessionId' => '1234567890',
+		$meaning = $queryApi->extractMeaning('$messageText', [
+			'sessionId' => '$senderId',
 			'lang' => 'en',
 			]);
 		$res= new Query($meaning);
