@@ -73,8 +73,8 @@ try {
 			]);
 		$res = new Query($meaning);
 		$res = $res['result']['fulfillment']['messages'][1]['speech'];
-		echo "result \n";
-		print_r("res : " . $res);
+		echo "result : ";
+		print_r($res);
 	} catch (\Exception $error) {
 		echo $error->getMessage();
 		
