@@ -96,24 +96,24 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 //     print_r($error->getMessage());
 // }
 
-$apiai_key = '00355556bf8045e7aebe2041350a4d51';
-    $apiai_subscription_key = '5c8e46115c424da79a9c3d96f1f897a1';
-    
-    $query = 'hello';
-    
-    $client = new Client();
-    $send = ['headers' => [
-                'Content-Type' => 'application/json;charset=utf-8', 
-                'Authorization' => 'Bearer '.$apiai_key
-                ],
-            'body' => json_encode([                
-                'query' => $query, 
-                'lang' => 'en',
-                ])
-            ];  
-    $response = $client->post('https://api.api.ai/v1/query?v=20150910', $send);
-    $res = json_decode($response->getBody(),true);
-    print_r($res);
+	// $apiai_key = '00355556bf8045e7aebe2041350a4d51';
+	// $apiai_subscription_key = '5c8e46115c424da79a9c3d96f1f897a1';
+	
+	// $query = 'hello';
+	
+	// $client = new Client();
+	// $send = ['headers' => [
+	// 'Content-Type' => 'application/json;charset=utf-8', 
+	// 'Authorization' => 'Bearer '.$apiai_key
+	// ],
+	// 'body' => json_encode([                
+	// 	'query' => $query, 
+	// 	'lang' => 'en',
+	// 	])
+	// ];  
+	// $response = $client->post('https://api.api.ai/v1/query?v=20150910', $send);
+	// $res = json_decode($response->getBody(),true);
+	// print_r($res);
 
 $answer = "I didn't understand that. Please Ask me 'hi' or 'time' or select a quick reply.";
 
@@ -268,21 +268,23 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 		$answer = "Hint : forcebroadcast \" \"";
 	}
 }else{
-	$answer = "else";
-	try {
-		$client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
-		$queryApi = new QueryApi($client);
+	// $answer = "else";
+	// $query = 'hello';
+	
+	// $client = new Client();
+	// $send = ['headers' => [
+	// 'Content-Type' => 'application/json;charset=utf-8', 
+	// 'Authorization' => 'Bearer '.$apiai_key
+	// ],
+	// 'body' => json_encode([                
+	// 	'query' => $query, 
+	// 	'lang' => 'en',
+	// 	])
+	// ];  
+	// $response = $client->post('https://api.api.ai/v1/query?v=20150910', $send);
+	// $res = json_decode($response->getBody(),true);
+	// print_r($res);
 
-		$meaning = $queryApi->extractMeaning('$messageText', [
-			'sessionId' => '$senderId',
-			'lang' => 'en',
-			]);
-		$res= new Query($meaning);
-		$answer = $res->result->fulfillment>messages[1]->speech;
-	} catch (\Exception $error) {
-		echo $error->getMessage();
-		$answer = $error->getMessage();
-	}
 
 }
 		
