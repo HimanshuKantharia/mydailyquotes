@@ -65,55 +65,6 @@ $url = "https://graph.facebook.com/v2.6/".$senderId."?fields=first_name,last_nam
 	
 	//$answer = "Hey ".$fname."!";
 
-// try {
-// 		$client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
-// 		$queryApi = new QueryApi($client);
-
-// 		$meaning = $queryApi->extractMeaning('Hello', [
-// 			'sessionId' => '1234567890',
-// 			'lang' => 'en',
-// 			]);
-// 		$res = new Query($meaning);
-// 		$res = $res->result->fulfillment>messages[1]->speech;
-// 		//$res = $res->lang;
-// 		echo "result : ";
-// 		print_r($res);
-// 	} catch (\Exception $error) {
-// 		echo $error->getMessage();
-		
-// 	}
-
-// 	try {
-//     $client = new Client('5c8e46115c424da79a9c3d96f1f897a1');
-
-//     $query = $client->get('query', [
-//         'query' => 'Hello',
-//     ]);
-
-//     $response = json_decode((string) $query->getBody(), true);
-//     print_r($response);
-// } catch (\Exception $error) {
-//     print_r($error->getMessage());
-// }
-
-	// $apiai_key = '00355556bf8045e7aebe2041350a4d51';
-	// $apiai_subscription_key = '5c8e46115c424da79a9c3d96f1f897a1';
-	
-	// $query = 'hello';
-	
-	// $client = new Client();
-	// $send = ['headers' => [
-	// 'Content-Type' => 'application/json;charset=utf-8', 
-	// 'Authorization' => 'Bearer '.$apiai_key
-	// ],
-	// 'body' => json_encode([                
-	// 	'query' => $query, 
-	// 	'lang' => 'en',
-	// 	])
-	// ];  
-	// $response = $client->post('https://api.api.ai/v1/query?v=20150910', $send);
-	// $res = json_decode($response->getBody(),true);
-	// print_r($res);
 
 $answer = "I didn't understand that. Please Ask me 'hi' or 'time' or select a quick reply.";
 
@@ -268,24 +219,30 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 		$answer = "Hint : forcebroadcast \" \"";
 	}
 }else{
-	// $answer = "else";
-	// $query = 'hello';
 	
-	// $client = new Client();
-	// $send = ['headers' => [
-	// 'Content-Type' => 'application/json;charset=utf-8', 
-	// 'Authorization' => 'Bearer '.$apiai_key
-	// ],
-	// 'body' => json_encode([                
-	// 	'query' => $query, 
-	// 	'lang' => 'en',
-	// 	])
-	// ];  
-	// $response = $client->post('https://api.api.ai/v1/query?v=20150910', $send);
-	// $res = json_decode($response->getBody(),true);
-	// print_r($res);
+	$answer = "Checknih random";
 
+	$authorization = 'Authorization:Bearer 00355556bf8045e7aebe2041350a4d51';
 
+	$postfield = '{
+		"v": "20150910",
+		"query": "hello",
+		"lang": "en",
+		"sessionId": '.time().',
+		"timezone": "2017-06-09T20:21:44+0530"
+	}';
+
+	$ach = curl_init('https://api.api.ai/api/query');
+	curl_setopt($ach, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt($ach, CURLOPT_SSL_VERIFYPEER, 0);
+	curl_setopt($ach, CURLOPT_POST, 1);
+	curl_setopt($ach, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ach, CURLOPT_POSTFIELDS, $postfield);
+	curl_setopt($ach, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization));
+	$response = curl_exec($ach);
+
+	$json_res = json_decode($response);
+	$answer = $json_res->result->speech;
 }
 		
 
