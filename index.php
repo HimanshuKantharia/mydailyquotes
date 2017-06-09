@@ -226,7 +226,7 @@ else if(substr_compare($messageText, "forcebroadcast", 0, 14) == 0 && $senderId 
 
 	$postfield = '{
 		"v": "20150910",
-		"query": "hello",
+		"query": '.$messageText.',
 		"lang": "en",
 		"sessionId": '.time().',
 		"timezone": "2017-06-09T20:21:44+0530"
